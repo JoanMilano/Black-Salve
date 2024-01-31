@@ -3,9 +3,9 @@ import React from "react";
 const About = () => {
  return (
         <div>
-            <img>1st img</img>
+            <p>1st img</p>
             <p>family story</p>
-            <img>2nd optional img</img>
+            <p>2nd optional img</p>
             <p>How they operate</p>
         </div>
     );

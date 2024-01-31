@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Container, Nav, Dropdown} from "react-bootstrap"
-import { NavLink } from "react-router-dom";
-
-
-
+import { Navbar, Container } from "react-bootstrap";
 
 
 export const NavBar = () => {
@@ -24,7 +20,7 @@ export const NavBar = () => {
     }, [])
 
  return (
-    <Navbar expand="lg" className={scrolled ? "scrolled" : ""}> 
+  <Navbar expand="lg" className={scrolled ? "scrolled" : ""}> 
     <Container id="nav-body">
       <Navbar.Brand href="#home">
         <h2>Grandmas Healing Salve</h2>
@@ -39,10 +35,10 @@ export const NavBar = () => {
       </Navbar.Toggle>
       <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
-            <NavLink to="/Home" activeClassName="active">
+            <NavLink to="/" activeClassName="active">
               HomePage
             </NavLink>
-            <NavLink to="/Buy" activeClassName="active">
+            <NavLink to="/About" activeClassName="active">
              Our Story
             </NavLink>
             <NavLink to="/Info" activeClassName="active">
@@ -54,13 +50,15 @@ export const NavBar = () => {
             </Nav>
           <span className="navbar-text">
             <div className="social-icon">
-                <a href="" target="_blank" rel="noreferrer">  <img src="" alt="Facebook link"></img></a>
-                <a href="" target="_blank" rel="noreferrer">  <img src="" alt="Email link"></img></a>
+                <a target="_blank" rel="noreferrer">  <img alt="Facebook link"></img></a>
+                <a target="_blank" rel="noreferrer">  <img alt="Email link"></img></a>
             </div>
           </span>
       </Navbar.Collapse>
     </Container>
   </Navbar>
+
+
 
     );
 };

@@ -2,13 +2,13 @@ import React from "react";
 
 const Footer = () => {
  return (
-        <div>
+        <div className="footer">
             <p>produced my joan milano(linked to portfolio)</p>
             <p>copyright 2024</p>
             <p>disclaimer</p>
              <div className="social-icon">
-                <a href="" target="_blank" rel="noreferrer">  <img src="" alt="Facebook link"></img></a>
-                <a href="" target="_blank" rel="noreferrer">  <img src="" alt="Email link"></img></a>
+                <a target="_blank" rel="noreferrer">  <p alt="Facebook link"></p></a>
+                <a target="_blank" rel="noreferrer">  <p alt="Email link"></p></a>
             </div>
         </div>
     );

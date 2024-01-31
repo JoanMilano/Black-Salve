@@ -11,7 +11,7 @@ const Home = () => {
                 <CarouselItem>1oz open</CarouselItem>
             </Carousel>
             <button>Buy now!</button>
-            <img>logo with ingredients behind it</img>
+            <p>logo with ingredients behind it, img</p>
             <p>opening text, little bit of everything</p>
         </div>
     );
