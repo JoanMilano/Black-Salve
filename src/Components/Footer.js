@@ -7,8 +7,8 @@ const Footer = () => {
             <p>copyright 2024</p>
             <p>disclaimer</p>
              <div className="social-icon">
-                <a href="https://www.linkedin.com/in/joan-milano-3b541b29b/" target="_blank" rel="noreferrer">  <img src={navIcon1} alt="Facebook link"></img></a>
-                <a href="https://github.com/JoanMilano" target="_blank" rel="noreferrer">  <img src={navIcon2} alt="Email link"></img></a>
+                <a href="" target="_blank" rel="noreferrer">  <img src="" alt="Facebook link"></img></a>
+                <a href="" target="_blank" rel="noreferrer">  <img src="" alt="Email link"></img></a>
             </div>
         </div>
     );
