@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Container } from "react-bootstrap";
+import { Nav, Navbar, Container, Dropdown } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 
 export const NavBar = () => {
@@ -35,16 +36,16 @@ export const NavBar = () => {
       </Navbar.Toggle>
       <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
-            <NavLink to="/" activeClassName="active">
+            <NavLink to="/" className="active"> {/* Try out router's activeClassName as sm point during styling*/}
               HomePage
             </NavLink>
-            <NavLink to="/About" activeClassName="active">
+            <NavLink to="/about" className="active">
              Our Story
             </NavLink>
-            <NavLink to="/Info" activeClassName="active">
+            <NavLink to="/info" className="active">
               Uses & Testimonials
             </NavLink>
-            <NavLink to="/Contact" activeClassName="active">
+            <NavLink to="/contact" className="active">
               Get In Touch
             </NavLink>
             </Nav>

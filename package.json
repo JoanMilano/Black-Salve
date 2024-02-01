@@ -26,6 +26,9 @@
   "scripts": {
     "start": "npm-run-all -p start-react",
     "start-react": "react-scripts start",
+    "start-email-server": "node Back-end/Email.js",
+    "start-payment-server": "node Back-end/Payment.js",
+    "start-robot-server": "node Back-end/Robot.js",
     "build": "react-scripts build",
     "test": "jest --config jest.config.js",
     "eject": "react-scripts eject"
