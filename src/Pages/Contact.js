@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useRef } from "react";
 import { Container, Row, Col } from 'react-bootstrap'; 
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 
 export const Contact = () => {
     const formInitialDetails = {
@@ -44,14 +46,6 @@ setButtonText("Send"); // when done sending set button back send
     setStatus({ success: false, message: 'Something went wrong.' })
  }
 };  
-
-const recaptchaRef = useRef();
-
-const handleRecaptchaVerify = () => {
-  const token = recaptchaRef.current.getValue();
-  // Use the token as needed (e.g., send it to your server for verification).
-  console.log('reCAPTCHA Token:', token);
-};
 
         return (
             <section className="contact" id="get-in-touch">
