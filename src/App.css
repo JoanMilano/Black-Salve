@@ -18,7 +18,7 @@
 /*********** Footer ******************/
 
 .footer {
-    bottom: 0;
+    bottom: 0px;
     background-color: rgb(232, 130, 130); 
     width: 100%;
 }

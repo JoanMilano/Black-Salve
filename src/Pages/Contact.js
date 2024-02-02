@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Container, Row, Col } from 'react-bootstrap'; 
 
 export const Contact = () => {
@@ -44,6 +44,15 @@ setButtonText("Send"); // when done sending set button back send
     setStatus({ success: false, message: 'Something went wrong.' })
  }
 };  
+
+const recaptchaRef = useRef();
+
+const handleRecaptchaVerify = () => {
+  const token = recaptchaRef.current.getValue();
+  // Use the token as needed (e.g., send it to your server for verification).
+  console.log('reCAPTCHA Token:', token);
+};
+
         return (
             <section className="contact" id="get-in-touch">
                 <Container>
@@ -76,13 +85,11 @@ setButtonText("Send"); // when done sending set button back send
                     <Col sm={6} className="px-1">
                       <input type="tel" value={formDetails.phone} placeholder="Phone No." onChange={(e) => onFormUpdate('phone', e.target.value)} />
                     </Col>
-                    <Col>
+                    <Col> 
                       <textarea rows="6" value={formDetails.message} placeholder="Message" onChange={(e) => onFormUpdate('message', e.target.value)} />
                     </Col>
                     <Row>
-                      <Col>
-                      <div>Robot Button</div>
-                    </Col>
+                    <div className="g-recaptcha" data-sitekey="6LeE2GIpAAAAADyN1i7pOI3KcQFH4M8iU7V5TPgC"></div>
                     <Col>
                       <button type="submit"><span>{buttonText}</span></button>
                         {
