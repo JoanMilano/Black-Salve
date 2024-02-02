@@ -45,7 +45,7 @@ const Home = () => {
                 <CarouselItem>1oz closed</CarouselItem>
                 <CarouselItem>1oz open</CarouselItem>
             </Carousel>
-            <div id="paypal-button-container">paypal button</div>
+            <div id="paypal-button-container"></div>
             <p>logo with ingredients behind it, img</p>
             <p>opening text, little bit of everything</p>
         </div>
