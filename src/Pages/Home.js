@@ -6,10 +6,19 @@ const Home = () => {
     const loadPayPalScript = async () => {
       // Check if the PayPal script is already loaded
       if (!window.paypal) {
-        const script = document.createElement("script");
-        script.src = "https://www.paypal.com/sdk/js?client-id=AcIWeQmnOD4m0nKidn4M_HzIWzvLMDOQf2spO6Cql0s42_ebPIKf6ERLLxdUUaWznt180vbewrqajIa5&currency=USD";
-        script.async = true;
-        script.onload = () => {
+        try {
+          const script = document.createElement("script");
+          script.src = "https://www.paypal.com/sdk/js?client-id=AcIWeQmnOD4m0nKidn4M_HzIWzvLMDOQf2spO6Cql0s42_ebPIKf6ERLLxdUUaWznt180vbewrqajIa5&currency=USD";
+          script.async = true;
+
+          // Promise-based script loading
+          await new Promise((resolve, reject) => {
+            script.onload = resolve;
+            script.onerror = reject;
+            // Append the script to the document
+            document.body.appendChild(script);
+          });
+
           // Render PayPal buttons after script has loaded
           window.paypal.Buttons({
             createOrder: function (data, actions) {
@@ -30,20 +39,9 @@ const Home = () => {
               });
             },
           }).render("#paypal-button-container");
-        };
-
-        script.onerror = (error) => {
+        } catch (error) {
           console.error("Error loading PayPal script", error);
-        };
-
-        // Append the script to the document
-        document.body.appendChild(script);
-
-        // Return cleanup function
-        return () => {
-          // Remove the script when the component is unmounted
-          document.body.removeChild(script);
-        };
+        }
       }
     };
 
@@ -51,21 +49,19 @@ const Home = () => {
     loadPayPalScript();
   }, []);
 
- return (
-        <div className="landing-page">
-            <Carousel>
-                <CarouselItem>2oz closed</CarouselItem>
-                <CarouselItem>2oz open</CarouselItem>
-                <CarouselItem>1oz closed</CarouselItem>
-                <CarouselItem>1oz open</CarouselItem>
-            </Carousel>
-            <div id="paypal-button-container"></div>
-            <p>logo with ingredients behind it, img</p>
-            <p>opening text, little bit of everything</p>
-        </div>
-    );
+  return (
+    <div className="landing-page">
+      <Carousel>
+        <CarouselItem>2oz closed</CarouselItem>
+        <CarouselItem>2oz open</CarouselItem>
+        <CarouselItem>1oz closed</CarouselItem>
+        <CarouselItem>1oz open</CarouselItem>
+      </Carousel>
+      <div id="paypal-button-container"></div>
+      <p>logo with ingredients behind it, img</p>
+      <p>opening text, a little bit of everything</p>
+    </div>
+  );
 };
 
-
-
-export default Home; 
+export default Home;
