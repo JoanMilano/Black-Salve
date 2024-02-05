@@ -9,16 +9,35 @@
 
 /************  Nav Bar  **************/
 
-.scrolled {
-    background-color: rgb(91, 121, 255);
+.nav-body {
+    height: 20px;
+    background-color: aquamarine;
 }
+
+.scrolled {
+    background-color: rgb(91, 121, 255); 
+}
+
+/*********** Home  *************/
+
+
+
+/*********** About  *************/
+
+
+
+/*********** Info *************/
+
+
+
+/*********** Contact *************/
 
 
 
 /*********** Footer ******************/
 
 .footer {
-    bottom: 0px;
+    bottom: 0;
     background-color: rgb(232, 130, 130); 
     width: 100%;
 }
