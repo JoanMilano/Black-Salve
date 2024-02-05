@@ -119,7 +119,8 @@ const Home = () => {
       <PayPalButton 
       amount={calculateTotalAmount().toFixed(2)} // .toFixed(2) ensures compliance with currency format
       createOrder={(data, actions) => createOrder(data, actions)} 
-      onSuccess={(details, data) => handleOnSuccess(details, data)} />
+      onSuccess={(details, data) => handleOnSuccess(details, data)}
+       />
       
       <p>logo with ingredients behind it, img</p>
       <p>opening text, a little bit of everything</p>
