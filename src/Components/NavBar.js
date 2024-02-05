@@ -36,7 +36,7 @@ export const NavBar = () => {
       </Navbar.Toggle>
       <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
-            <NavLink to="/" className="active"> {/* Try out router's activeClassName as sm point during styling*/}
+            <NavLink to='/' className="active"> {/* Try out router's activeClassName as sm point during styling*/}
               HomePage
             </NavLink>
             <NavLink to="/about" className="active">

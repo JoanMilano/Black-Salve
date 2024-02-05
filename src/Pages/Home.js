@@ -3,6 +3,7 @@ import { Carousel, CarouselItem, Dropdown, DropdownButton } from "react-bootstra
 import { PayPalButton } from "react-paypal-button-v2";
 
 
+
 const Home = () => {
     const [selectedItems, setSelectedItems ] = useState([]);
 
@@ -11,7 +12,7 @@ const Home = () => {
       description: '1oz container of Black Salve',
       nonBulkPrice: 10, 
       bulkPrice: 5,
-      bulkQuantityThreshold: 5
+      bulkQuantityThreshold: 5,
     }
 
     const productTwo = {
@@ -19,7 +20,7 @@ const Home = () => {
       description: '2oz container of Black Salve',
       nonBulkPrice: 20, 
       bulkPrice: 15,
-      bulkQuantityThreshold: 5
+      bulkQuantityThreshold: 5,
     }
 
   // alerty that payment was successful and give customer there order ID (optional) send or ID to their email 
@@ -42,12 +43,15 @@ const Home = () => {
     if (existingItemIndex !== -1) { // if item already exist in the array
       setSelectedItems((prevItems) =>
       prevItems.map((item, index) =>
-      index === existingItemIndex ? { ...item, quantity: item.quantity + quantity} : item
+      index === existingItemIndex 
+      ? { ...item, quantity: item.quantity + quantity} 
+      : item
         )
       );
     } else {
      // add new item to selectedItems
-      setSelectedItems((prevItems) => [...prevItems, { ...product, quantity}])
+      setSelectedItems((prevItems) => 
+      [...prevItems, { ...product, quantity}])
     }
   }  
 
@@ -55,18 +59,24 @@ const Home = () => {
 
   // how munch of the items are selected 
   const calculateTotalAmount = () => {
-    selectedItems.reduce((total, item) => {
+    return selectedItems.reduce((total, item) => {
       return total + calculateUnitAmount(item)
-  });
+  }, 0);
+} 
 
  // function for calculating when to use bulk pries function
   const calculateUnitAmount  = item => {
-   return item.quantity * (item.Bulk? item.bulkPrice : item.nonBulkPrice);
+      if (item.quantity >= item.bulkQuantityThreshold) {
+
+   return item.quantity * item.bulkPrice; 
+  } else {
+    return item.quantity * item.nonBulkPrice; 
   }
+}
 
 
   // Items name and price varys depending on which item and amount  
-  const createOrder = (data, actions) => {
+  const createOrder = (actions) => { 
     return actions.order.create({
       purchase_units: [
         {
@@ -75,13 +85,13 @@ const Home = () => {
             value: calculateTotalAmount().toFixed(2), // total amount
           },
           items: selectedItems.map(item => ({
-              name: item.name,
+              title: item.title,
               description: item.description,
               quantity: item.quantity,
               category: 'PHYSICAL_GOODS', // Update with the appropriate category
               unit_amount: {
                 currency_code: 'USD', // hard-code if more then one accepted currency then dynamic
-                value: calculateUnitAmount(item).toFixed(2), // Update with the actual unit amount
+                value: calculateTotalAmount(item).toFixed(2), // Update with the actual unit amount
               },
             })),
             // Shipping info (country, state, city, zipcode, street # & name) bonus: verify b4 continuing
@@ -102,20 +112,19 @@ const Home = () => {
       </Carousel>
 
       <Dropdown> {/* re-do selection process to be more bulk friendly*/}
-        <DropdownButton onClick={() => handleOnClick(productOne, 1)}>1oz Salve</DropdownButton>
-        <DropdownButton onClick={() => handleOnClick(productTwo, 1)}>2oz Salve</DropdownButton>
+        <DropdownButton title="1oz Salve" onClick={() => handleOnClick(productOne, 1)}>1oz Salve</DropdownButton>
+        <DropdownButton title="2oz Salve" onClick={() => handleOnClick(productTwo, 1)}>2oz Salve</DropdownButton>
       </Dropdown>
 
       <PayPalButton 
-      amount={calculateTotalAmount().toFixed(2)} 
+      amount={calculateTotalAmount().toFixed(2)} // .toFixed(2) ensures compliance with currency format
       createOrder={(data, actions) => createOrder(data, actions)} 
       onSuccess={(details, data) => handleOnSuccess(details, data)} />
-
+      
       <p>logo with ingredients behind it, img</p>
       <p>opening text, a little bit of everything</p>
     </div>
   );
 };
-}
 
 export default Home;

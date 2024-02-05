@@ -1,5 +1,7 @@
 import React from "react";
 
+
+// wholesale options available 
 const Footer = () => {
  return (
         <section className="footer">
