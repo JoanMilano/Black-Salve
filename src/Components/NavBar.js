@@ -21,15 +21,11 @@ export const NavBar = () => {
     }, [])
 
  return (
-  <Navbar expand="lg" className={scrolled ? "scrolled" : ""}> 
+  <Navbar expand="lg" className={scrolled ? "nav scrolled" : "nav"}> 
     <Container id="nav-body">
       <Navbar.Brand href="#home">
         <h2>Grandmas Healing Salve</h2>
       </Navbar.Brand>
-
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-      Dropdown Button
-      </Dropdown.Toggle>
 
       <Navbar.Toggle aria-controls="basic-navbar-nav">
         <span className="navbar-toggler-icon"></span>
