@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Nav, Navbar, Container, Dropdown } from "react-bootstrap";
+import { Nav, Navbar, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 
@@ -35,14 +35,14 @@ export const NavBar = () => {
             <NavLink to='/' className="active"> {/* Try out router's activeClassName as sm point during styling*/}
               HomePage
             </NavLink>
-            <NavLink to="/about" className="active">
-             Our Story
-            </NavLink>
             <NavLink to="/info" className="active">
               Uses & Testimonials
             </NavLink>
             <NavLink to="/contact" className="active">
               Get In Touch
+            </NavLink>
+            <NavLink to="/checkout" className="active">
+              Purchase Here!
             </NavLink>
             </Nav>
           <span className="navbar-text">
