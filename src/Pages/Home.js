@@ -1,6 +1,10 @@
 import React from "react";
 import twoOz from '../assets/imgs/open2oz.avif';
 import paraImg1 from "../assets/imgs/paraImg1.avif";
+import { NavLink } from "react-router-dom";
+import { Nav } from "react-bootstrap";
+
+
 
 const Home = () => {
   return (
@@ -9,8 +13,12 @@ const Home = () => {
       <section className="firstSection">
           <img className="salve" src={twoOz} alt="..."/>
       <div className="button-container">
-      <a href="#"><button>Purchase Here!</button></a>
-      <a href="#"><button>Learn more..</button></a>
+      <Nav >
+      <NavLink to="/checkout" className="active buy-button">
+            Purchase Here!
+          </NavLink>
+      <NavLink><button>Learn more..</button></NavLink>
+      </Nav>
       </div>
       </section>
       <section className="second-section">

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 
 // wholesale options available 
@@ -9,8 +10,9 @@ const Footer = () => {
             <p>copyright 2024</p>
             <p>smol disclaimer's</p>
              <div className="social-icon">
-                <a target="_blank" rel="noreferrer">  <p alt="Facebook link">Facebook Link</p></a>
-                <a target="_blank" rel="noreferrer">  <p alt="Email link">email link</p></a>
+                <a target="_blank" rel="noreferrer" alt="Facebook link">Facebook Link</a>
+                <br />
+                <NavLink target="_blank" rel="noreferrer" alt="Email link">email link</NavLink>
             </div>
         </section> 
     );

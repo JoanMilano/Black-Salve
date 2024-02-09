@@ -47,8 +47,10 @@ export const NavBar = () => {
             </Nav>
           <span className="navbar-text">
             <div className="social-icon">
-                <a target="_blank" rel="noreferrer">  <img alt="Facebook link"></img></a>
-                <a target="_blank" rel="noreferrer">  <img alt="Email link"></img></a>
+                <Nav>
+                <NavLink to="/checkout" className="active">Facebook Link</NavLink>
+                <NavLink target="_blank" rel="noreferrer">  <img alt="Email link"></img></NavLink>
+              </Nav>
             </div>
           </span>
       </Navbar.Collapse>

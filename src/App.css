@@ -97,25 +97,21 @@ h1, h2, h3, h4, h5, h6 {
     height: 80px; 
     width: 200px; 
 }
+.buy-button {
+}
 
 .second-section {
     background-color: aquamarine;
     height: auto;
     padding: 35px 50px 35px 50px;
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-areas: 
-    "p1 img1"
-    "p2 p2"
-    "img2 img2"
-    "p2 p2"
-    "img3 p3"
-    "p3 p3";
+    /* another time*/ 
 }
+
 
 .p-one {
     grid-area: p1;
+    
 }
 .img-one {
     grid-area: img1;
@@ -131,7 +127,7 @@ h1, h2, h3, h4, h5, h6 {
     grid-area: p3;
 }
 .img-three {
-    grid-area: img3;
+    grid-area: img-3;
 }
 
 .logo-img {
