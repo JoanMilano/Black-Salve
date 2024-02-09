@@ -22,7 +22,7 @@ export const NavBar = () => {
 
  return (
   <Navbar expand="lg" className={scrolled ? "nav scrolled" : "nav"}> 
-    <Container id="nav-body">
+    <Container>
       <Navbar.Brand href="#home">
         <h2>Grandmas Healing Salve</h2>
       </Navbar.Brand>
@@ -49,7 +49,7 @@ export const NavBar = () => {
             <div className="social-icon">
                 <Nav>
                 <NavLink to="/checkout" className="active">Facebook Link</NavLink>
-                <NavLink target="_blank" rel="noreferrer">  <img alt="Email link"></img></NavLink>
+                <a target="_blank" rel="noreferrer">"Email link"</a>
               </Nav>
             </div>
           </span>
