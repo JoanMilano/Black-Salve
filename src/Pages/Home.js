@@ -2,6 +2,7 @@ import React from "react";
 import twoOz from '../assets/imgs/open2oz.avif';
 import paraImg1 from "../assets/imgs/paraImg1.avif";
 import { NavLink } from "react-router-dom";
+import { Carousel } from "react-bootstrap";
 
 
 
@@ -9,12 +10,14 @@ const Home = () => {
   return (
 
     <div className="landing-page">
+      
       <section className="first-section">
           <img className="salve" src={twoOz} alt="..."/>
       <div className="button-container">
       <NavLink to="/checkout" className="active"><button className="buy-button">Purchase Here!</button></NavLink>
       </div>
       </section>
+      
       <section className="second-section">
       <p className="p-one">Grandma's Healing Products Pine Tar Salve is made in many ways but none quite as remarkable as my Grandma's. This unique and powerful slave is a great way to help your body heal itself, safely and easily. It has been used for many generations and customers have reported uses on many things. From Bug bites to burns and boils. Grandma's Healing Salve does it all. This recipe has been used since the early 1800's on family and pets. My Grandma Helen passed the recipe on to me. Besides adding an all natural preservative Grapefruit Seed Extract; the recipe remains the same as those many years ago. It's time to go back to nature.</p>
       <img src={paraImg1} alt="Cabin On Alaskan Hill" />

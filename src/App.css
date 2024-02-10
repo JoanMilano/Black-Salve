@@ -59,7 +59,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .first-section {
     position: relative;
-    height: 150px;
     width: 100%;
     height: auto;
     padding: 120px 5px 60px 5px;
@@ -87,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .buy-button {
-    margin: 30px 20px 40px 40px;
+    margin: 30px 0px 40px 120px;
     height: 80px; 
     width: 200px; 
 }
@@ -102,14 +101,22 @@ h1, h2, h3, h4, h5, h6 {
 .second-section p {
     margin: 30px 20px 30px 20px;
     max-width: 800px; 
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+}
+.p-one {
+    overflow: hidden;
+    word-wrap: break-word;
+    float: none; 
 }
 .second-section img {
     max-width: 300px;  
     height: 280px;
+    float: right; 
+    margin: 5%;
+}
+.logo-img {
+    width: 100%; 
+    height: 400px
 }
 
 
