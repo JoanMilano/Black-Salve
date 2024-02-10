@@ -57,12 +57,12 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-.firstSection {
+.first-section {
     position: relative;
     height: 150px;
     width: 100%;
-    height: 550px;
-    padding: 120px 5px 10px 5px;
+    height: auto;
+    padding: 120px 5px 60px 5px;
     display: flex;
     flex-wrap: wrap; 
     justify-content: space-around;
@@ -86,8 +86,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 120px;
 }
 
-.button-container button {
-    margin-bottom: 40px;
+.buy-button {
+    margin: 30px 20px 40px 40px;
     height: 80px; 
     width: 200px; 
 }
@@ -96,39 +96,21 @@ h1, h2, h3, h4, h5, h6 {
     background-color: aquamarine;
     height: auto;
     padding: 35px 50px 35px 50px;
-    display: grid;
-    /* another time*/ 
 }
 
 
-.p-one {
-    grid-area: p1;
-    
+.second-section p {
+    margin: 30px 20px 30px 20px;
+    max-width: 800px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.img-one {
-    grid-area: img1;
-
+.second-section img {
+    max-width: 300px;  
+    height: 280px;
 }
-.p-two {
-    grid-area: p2;
-}
-.img-two {
-    grid-area: img2;
-}
-.p-three {
-    grid-area: p3;
-}
-.img-three {
-    grid-area: img-3;
-}
-
-.logo-img {
-    width: 100%;
-    height: auto;
-}
-
-
-
 
 
 /*********** About  *************/
