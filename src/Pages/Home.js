@@ -3,7 +3,7 @@ import twoOz from '../assets/imgs/open2oz.avif';
 import paraImg1 from "../assets/imgs/paraImg1.avif";
 import { NavLink } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Home = () => {
@@ -12,7 +12,20 @@ const Home = () => {
     <div className="landing-page">
       
       <section className="first-section">
-          <img className="salve" src={twoOz} alt="..."/>
+      <Carousel className="salve" >
+          <Carousel.Item>
+            <img src={paraImg1} alt="First slide" className="d-block w-100" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img src={twoOz} alt="Second slide" className="d-block w-100" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img src={twoOz} alt="Third slide" className="d-block w-100" />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img src={twoOz} alt="Fourth slide" className="d-block w-100" />
+          </Carousel.Item>
+        </Carousel>
       <div className="button-container">
       <NavLink to="/checkout" className="active"><button className="buy-button">Purchase Here!</button></NavLink>
       </div>
