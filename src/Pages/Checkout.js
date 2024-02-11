@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import twoOz from "../assets/imgs/open2oz.avif";
-import { DropdownItem } from "react-bootstrap";
+import React from "react";
+// import twoOz from "../assets/imgs/open2oz.avif";
+// import { DropdownItem } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Checkout = () => {
@@ -8,23 +8,19 @@ const Checkout = () => {
     return (
       <>
       <h2>Checkout</h2>
-      <section className="one-oz-section">
-  <img src={twoOz} alt="Second slide" className="checkout-one-oz" />
-  <div className="btn-group">
-  <button type="button" className="btn btn-primary">amount</button>
-  <button type="button" className="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+      <div className="btn-group">
+  <button type="button" className="btn btn-danger">Action</button>
+  <button type="button" className="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
     <span className="visually-hidden">Toggle Dropdown</span>
   </button>
   <ul className="dropdown-menu">
-    <DropdownItem>1 -1 oz- 17.99 ea.</DropdownItem>
-    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
-    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
-    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
-    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
-    {/* geos to 20 */}
-   </ul>
+    <li><a className="dropdown-item" href="#">Action</a></li>
+    <li><a className="dropdown-item" href="#">Another action</a></li>
+    <li><a className="dropdown-item" href="#">Something else here</a></li>
+    <li><hr className="dropdown-divider" /></li>
+    <li><a className="dropdown-item" href="#">Separated link</a></li>
+  </ul>
 </div>
-</section>
          </>
     )
 }
