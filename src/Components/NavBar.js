@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-
+import Gmail from '../assets/imgs/IconGmail.webp';
+import FaceBook from '../assets/imgs/facebookIcon.webp';
 
 export const NavBar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -30,27 +31,25 @@ export const NavBar = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav">
         <span className="navbar-toggler-icon"></span>
       </Navbar.Toggle>
-      <Navbar.Collapse id="basic-navbar-nav">
-            <Nav>
-            <NavLink to='/' className="active"> {/* Try out router's activeClassName as sm point during styling*/}
+      <Navbar.Collapse id="nav-container">
+            <Nav className="navbar-links">
+            <NavLink to='/'> {/* Try out router's activeClassName as sm point during styling*/}
               HomePage
             </NavLink>
-            <NavLink to="/info" className="active">
+            <NavLink to="/info">
               Uses & Testimonials
             </NavLink>
-            <NavLink to="/contact" className="active">
+            <NavLink to="/contact">
               Get In Touch
             </NavLink>
-            <NavLink to="/checkout" className="active">
+            <NavLink to="/checkout">
               Purchase Here!
             </NavLink>
             </Nav>
           <span className="navbar-text">
-            <div className="social-icon">
-                <Nav>
-                <NavLink to="/checkout" className="active">Facebook Link</NavLink>
-                <a target="_blank" rel="noreferrer">"Email link"</a>
-              </Nav>
+            <div className="social-icon-nav">
+                <NavLink to="/checkout"><img src={Gmail} className="gmail-icon"/></NavLink>
+                <NavLink target="_blank" rel="noreferrer"><img src={FaceBook} className="facebook-icon"/></NavLink>
             </div>
           </span>
       </Navbar.Collapse>

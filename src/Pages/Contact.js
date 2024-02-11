@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState } from "react";
 import { Container, Row, Col } from 'react-bootstrap'; 
+import Gmail from '../assets/imgs/IconGmail.webp';
+import FaceBook from '../assets/imgs/facebookIcon.webp';
+
 
 
 export const Contact = () => {
@@ -47,24 +50,23 @@ setButtonText("Send"); // when done sending set button back send
 };  
 
         return (
-            <section className="contact" id="get-in-touch">
+            <section className="contact-page" id="get-in-touch">
                 <Container>
                     <Row className="align-items-center">
                         <Col md={6}>
                         </Col>
                         <Col md={6}>
                             <h2>Get In Touch</h2> 
-                            <span className="navbar-text">
-            <div className="social-icon">
-                <a href="" target="_blank" rel="noreferrer">  <p alt="Facebook link"></p></a>
-                <a href="" target="_blank" rel="noreferrer">  <p alt="Email link"></p></a>
+                <div className='contact-info'>
+            <div className="social-icon-contact">
+                <a href="mailto:grandmashealingsalve@gmail.com" target="_blank" rel="noreferrer"><img src={Gmail} alt="Gmail Icon Link" /></a>
+                <a href="https://www.facebook.com/Grandmashealingsalve/" target="_blank" rel="noreferrer"><img src={FaceBook} alt="FaceBook Icon Link"/></a>
             </div>
-          </span>
-          <p>number</p>
-          <p>email</p>
-          <p>Mon-fri</p>
-          <p>am-pm</p>
-          <form onSubmit={handleSubmit} id="contact-form">
+            </div>
+          <p>+1 (916)-397-5997</p> {/* link? */}
+          <p>grandmashealingsalve@gmail.com</p> {/* link? */}
+          <p>Monday-Friday: 8:00am-5:00pm</p>
+          <form onSubmit={handleSubmit} className="contact-form">
                <Row>
                <Col sm={6} className="px-1">
                  <input type="text" value={formDetails.firstName} placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
