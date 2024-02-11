@@ -1,11 +1,39 @@
 import React, { useState } from "react";
-import { PayPalButton } from "react-paypal-button-v2";
 import twoOz from "../assets/imgs/open2oz.avif";
 import { DropdownItem } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Checkout = () => {
-    const [selectedItems, setSelectedItems ] = useState([]);
+    
+    return (
+      <>
+      <h2>Checkout</h2>
+      <section className="one-oz-section">
+  <img src={twoOz} alt="Second slide" className="checkout-one-oz" />
+  <div className="btn-group">
+  <button type="button" className="btn btn-primary">amount</button>
+  <button type="button" className="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span className="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul className="dropdown-menu">
+    <DropdownItem>1 -1 oz- 17.99 ea.</DropdownItem>
+    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
+    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
+    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
+    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
+    {/* geos to 20 */}
+   </ul>
+</div>
+</section>
+         </>
+    )
+}
+
+export default Checkout; 
+
+
+/*
+const [selectedItems, setSelectedItems ] = useState([]);
 
     const productOne = {
       title: '1oz Salve',
@@ -101,34 +129,12 @@ const Checkout = () => {
     });
   };
 
-    return (
-      <>
-      <h2>Checkout</h2>
-      <section className="one-oz-section">
-  <img src={twoOz} alt="Second slide" className="checkout-one-oz" />
-  <div className="btn-group">
-  <button type="button" className="btn btn-primary">amount</button>
-  <button type="button" className="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-    <span className="visually-hidden">Toggle Dropdown</span>
-  </button>
-  <ul className="dropdown-menu">
-    <DropdownItem>1 -1 oz- 17.99 ea.</DropdownItem>
-    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
-    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
-    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
-    <DropdownItem>1 -1 oz- 16.99 ea.</DropdownItem>
-    {/* geos to 20 */}
-   </ul>
-</div>
-</section>
 
-        {/*<PayPalButton 
+import { PayPalButton } from "react-paypal-button-v2";
+
+<PayPalButton 
         amount={calculateTotalAmount().toFixed(2)} // .toFixed(2) ensures compliance with currency format
         createOrder={(data, actions) => createOrder(data, actions)} 
         onSuccess={(details, data) => handleOnSuccess(details, data)}
-    />*/}
-         </>
-    )
-}
-
-export default Checkout; 
+    />
+    */ 
