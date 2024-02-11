@@ -1,7 +1,8 @@
 import React from "react";
 // import twoOz from "../assets/imgs/open2oz.avif";
 // import { DropdownItem } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 const Checkout = () => {
     
@@ -10,7 +11,7 @@ const Checkout = () => {
       <h2>Checkout</h2>
       <div className="btn-group">
   <button type="button" className="btn btn-danger">Action</button>
-  <button type="button" className="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+  <button type="button" className="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
     <span className="visually-hidden">Toggle Dropdown</span>
   </button>
   <ul className="dropdown-menu">
