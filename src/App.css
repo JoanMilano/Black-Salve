@@ -244,15 +244,83 @@ h1, h2, h3, h4, h5, h6 {
     color: burlywood;
 }
 
-/*********** Footer ******************/
-
-.checkout-one-oz {
-    width: 500px;
+/*********** Checkout ******************/
+.checkout-page {
+    background-color: antiquewhite;
 }
-.dropdown-color {
-    color: green;
+.checkout-title {
+    margin-left: 80px;
+    padding: 20px 20px 20px 20px;
+    background-color: beige;
 }
+.dropdown {
+ margin-left: 10%;
+}
+.btn-color {
+    background-color: rgb(212, 139, 139) !important;
+  color: white !important; 
+  border-color: rgb(23, 23, 119) !important; 
+  height: 50px !important; 
+  font-size: 16px !important; 
+}
+.btn-text {
+    width: 100px !important; 
+}
+.drop-menu {
+    max-height: 120px; /* Set maximum height for the dropdown menu */
+    overflow-y: scroll; /* Enable vertical scrolling */
+}
+.salve-option-one,
+.salve-option-two {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 128, 0, 0.804) ;
+    padding: 50px; 
 
+}
+.salve-option-one img, 
+.salve-option-two img {
+    width: 300px; 
+    border-radius: 20%;
+    border: 3px solid #121212;
+}
+.shipping-details-pay {
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "shep-det paypal"
+    ;
+}
+.shipping-details {
+    grid-area: shep-det;
+}
+.shipping-section {
+    padding: 25px;
+    background-color: rgba(0, 255, 255, 0.547);
+}
+.shipping-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.details-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; 
+    background-color: rgb(92, 64, 231);
+}
+.paypal-section {
+    grid-area: paypal;
+    padding: 25px;
+    background-color: burlywood;
+}
 /*********** Footer ******************/
 
 .footer {

@@ -1,137 +1,161 @@
-import React from "react";
-// import twoOz from "../assets/imgs/open2oz.avif";
-// import { DropdownItem } from "react-bootstrap";
+import React, { useState } from "react";
+import twoOz from "../assets/imgs/open2oz.avif";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
+import { Dropdown, DropdownDivider, DropdownItem, DropdownMenu, DropdownToggle } from "react-bootstrap";
+import { PayPalButton } from "react-paypal-button-v2";
 
 const Checkout = () => {
     
-    return (
-      <>
-      <h2>Checkout</h2>
-      <div className="btn-group">
-  <button type="button" className="btn btn-danger">Action</button>
-  <button type="button" className="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-    <span className="visually-hidden">Toggle Dropdown</span>
-  </button>
-  <ul className="dropdown-menu">
-    <li><a className="dropdown-item" href="#">Action</a></li>
-    <li><a className="dropdown-item" href="#">Another action</a></li>
-    <li><a className="dropdown-item" href="#">Something else here</a></li>
-    <li><hr className="dropdown-divider" /></li>
-    <li><a className="dropdown-item" href="#">Separated link</a></li>
-  </ul>
-</div>
-         </>
-    )
-}
+  const [selectedItems, setSelectedItems ] = useState([]);
 
-export default Checkout; 
+  const productOne = {
+    title: '--1oz--',
+    description: '1oz container of Black Salve',
+    quantity: 0,
+    price: 0
+  }
 
+  const productTwo = {
+    title: '--2oz--',
+    description: '2oz container of Black Salve',
+    quantity: 0,
+    price: 0
+  }
 
-/*
-const [selectedItems, setSelectedItems ] = useState([]);
-
-    const productOne = {
-      title: '1oz Salve',
-      description: '1oz container of Black Salve',
-      nonBulkPrice: 10, 
-      bulkPrice: 5,
-      bulkQuantityThreshold: 5,
-    }
-
-    const productTwo = {
-      title: '2oz Salve',
-      description: '2oz container of Black Salve',
-      nonBulkPrice: 20, 
-      bulkPrice: 15,
-      bulkQuantityThreshold: 5,
-    }
-
-  // alerty that payment was successful and give customer there order ID (optional) send or ID to their email 
-    const handleOnSuccess = (details, data) => {
+  const handleOnSuccess = (details, data) => {
     const { payer } = details;
     const customerName = payer.name.given_name;
-    const customerOrderID =  data; // how do I extract the order ID from paypal given by paypal???
-    // const = email of customer 
+    const customerOrderID =  data;
     alert(
-      `Transaction complete! Thank You for your purchase ${customerName},
-       your order ID is ${customerOrderID}`);
-       // send to back-end to send compose & send email with order ID
+      `Transaction complete! Thank You for your purchase ${customerName}, your order ID is ${customerOrderID}`
+    );
   };
 
+  const handleOnClick = (quantity, product, price) => {
+    const existingItemIndex = selectedItems.findIndex((item) => item.title === product);
 
-
-  const handleOnClick = (product, quantity) => {
-    const existingItemIndex = selectedItems.findIndex((item) => item.title === product.title)
-
-    if (existingItemIndex !== -1) { // if item already exist in the array
-      setSelectedItems((prevItems) =>
-      prevItems.map((item, index) =>
-      index === existingItemIndex 
-      ? { ...item, quantity: item.quantity + quantity} 
-      : item
+    if (existingItemIndex !== -1) {
+      setSelectedItems((prevItems) => 
+        prevItems.map((item, index) => 
+          index === existingItemIndex ? { ...item, quantity} : item
         )
       );
     } else {
-     // add new item to selectedItems
       setSelectedItems((prevItems) => 
-      [...prevItems, { ...product, quantity}])
+        [...prevItems, { ...product, quantity}]
+      );
     }
   }  
 
-
-
-  // how munch of the items are selected 
   const calculateTotalAmount = () => {
     return selectedItems.reduce((total, item) => {
-      return total + calculateUnitAmount(item)
-  }, 0);
-} 
+      return total + item.quantity * item.price;
+    }, 0);
+  };
 
- // function for calculating when to use bulk pries function
-  const calculateUnitAmount  = item => {
-      if (item.quantity >= item.bulkQuantityThreshold) {
-
-   return item.quantity * item.bulkPrice; 
-  } else {
-    return item.quantity * item.nonBulkPrice; 
-  }
-}
-
-
-  // Items name and price varys depending on which item and amount  
   const createOrder = (actions) => { 
     return actions.order.create({
       purchase_units: [
         {
           amount: {
             currency_code: 'USD',
-            value: calculateTotalAmount().toFixed(2), // total amount
+            value: calculateTotalAmount().toFixed(2),
           },
           items: selectedItems.map(item => ({
               title: item.title,
               description: item.description,
               quantity: item.quantity,
-              category: 'PHYSICAL_GOODS', // Update with the appropriate category
+              category: 'PHYSICAL_GOODS',
               unit_amount: {
-                currency_code: 'USD', // hard-code if more then one accepted currency then dynamic
-                value: calculateTotalAmount(item).toFixed(2), // Update with the actual unit amount
+                currency_code: 'USD',
+                value: item.price.toFixed(2),
               },
             })),
-            // Shipping info (country, state, city, zipcode, street # & name) bonus: verify b4 continuing
-            // Contact info (number, email, name)
         },
       ],
     });
   };
 
 
-import { PayPalButton } from "react-paypal-button-v2";
+    return (
+      <div className="checkout-page">
+      <div className="checkout-title"><h2>Checkout</h2></div>
 
+      <section className="salve-option-one">
+      <img src={twoOz} alt="1oz tin of Black Salve" />
+      <Dropdown className="dropdown">
+  <button variant="info" className="btn btn-color btn-text">Amount</button>
+  <DropdownToggle
+   split 
+   className="btn-color"
+   id="dropdown-split-basic" />
+  <DropdownMenu className="drop-menu">
+    <DropdownItem onClick={handleOnClick}>1 --1oz-- 17.99 $ ea.</DropdownItem>
+    <DropdownItem onClick={handleOnClick}>2 --1oz-- 16.99 $ ea.</DropdownItem>
+    <DropdownItem onClick={handleOnClick}>3 --1oz-- 16.99 $ ea.</DropdownItem>
+    <DropdownItem onClick={handleOnClick}>4 --1oz-- 16.99 $ ea.</DropdownItem>
+    <DropdownItem onClick={handleOnClick}>5 --1oz-- 16.99 $ ea.</DropdownItem>
+    <DropdownDivider></DropdownDivider>
+    <DropdownItem>Contact for WholeSale</DropdownItem>
+  </DropdownMenu>
+</Dropdown>
+</section>
+
+<section className="salve-option-two">
+<img src={twoOz} alt="2oz tin of Black Salve" />
+<Dropdown className="dropdown">
+  <button variant="info" className="btn btn-color btn-text">Amount</button>
+  <DropdownToggle
+   split 
+   className="btn-color"
+   id="dropdown-split-basic" />
+  <DropdownMenu className="dropdown-menu">
+    <DropdownItem onClick={handleOnClick}>1 --2oz-- 24.99$ ea.</DropdownItem>
+    <DropdownItem onClick={handleOnClick}>2 --2oz-- 23.99$ ea.</DropdownItem>
+    <DropdownItem onClick={handleOnClick}>3 --2oz-- 23.99$ ea.</DropdownItem>
+    <DropdownItem onClick={handleOnClick}>4 --2oz-- 23.99$ ea.</DropdownItem>
+    <DropdownItem onClick={handleOnClick}>5 --2oz-- 23.99$ ea.</DropdownItem>
+    <DropdownDivider></DropdownDivider> {/* up to 20 items*/}
+    <DropdownItem>Contact for WholeSale</DropdownItem> {/* make contact ancher tag?*/}
+  </DropdownMenu>
+</Dropdown>
+ </section>
+ <div className="shipping-details-pay">
+  <div className="shipping-details">
+ <section className="shipping-section">
+      <form className="shipping-form">
+        <div>
+      <input type="radio" id="option1" name="options" value="option1" />
+  <label for="option1">Regular Shipping</label>
+  <p>Free - 5 to 7 bussiness days</p>
+  </div>
+  <div>
+  <input type="radio" id="option2" name="options" value="option2" />
+  <label for="option2">Priority Shipping</label>
+  <p>5$ or Free for orders over 5 items</p>
+  <p>3 to 5 bussiness days</p>
+  </div>
+      </form>
+ </section>
+ <section className="details-section">
+  <h3>Order Details</h3>
+    <p>`Items: 2 2oz 33.98$`</p>
+    <p>Subtotal `$subtotal`</p>
+    <p>Shipping `$shipping`</p>
+    <p>Total `$Total`</p>
+ </section>
+ </div>
+ <section className="paypal-section">
+  <h1>Purchase here!</h1>
 <PayPalButton 
-        amount={calculateTotalAmount().toFixed(2)} // .toFixed(2) ensures compliance with currency format
+        amount={calculateTotalAmount().toFixed(2)} // .toFixed(2) ensures compliance with currency format ($.$$)
         createOrder={(data, actions) => createOrder(data, actions)} 
         onSuccess={(details, data) => handleOnSuccess(details, data)}
-    />
-    */ 
+      />
+ </section>
+ </div>
+  </div>
+    ) } ; 
+
+    export default Checkout; 
+
