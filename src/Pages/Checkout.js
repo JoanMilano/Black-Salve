@@ -68,11 +68,6 @@ const Checkout = () => {
       return total + item.quantity;
     }, 0);
 
-
-  console.log("Shipping Type:", shippingType);
-  console.log("Total Order Quantity:", totalOrderQuantity);
-
-
     if (totalOrderQuantity > 5) {  
       setShippingPrice(0); 
     setShippingType("Priority");
@@ -83,14 +78,9 @@ const Checkout = () => {
       }
     } else if (shippingType === "Priority" && totalOrderQuantity <= 5) {
       setShippingPrice(5); 
-<<<<<<< Updated upstream
     } else {
       setShippingPrice(0);
     } 
-=======
-    }
-    console.log(shippingType);
->>>>>>> Stashed changes
   }
 
   useEffect(() => {
@@ -264,17 +254,10 @@ const handleOnSuccess = (details, data) => {
  </div>
  <section className="paypal-section">
   <h1>Purchase here!</h1>
-<<<<<<< Updated upstream
-  {shippingType === "" && (<p>Select a shipping option before proceeding to checkout.</p>)}
-{shippingType !== "" && (
-<PayPalButton 
-        amount={totalPrice.toFixed(2)} 
-=======
   {shippingType === "Select a Shipping Method" && (<p>Select a shipping option before proceeding to checkout.</p>)}
 {shippingType !== "Select a Shipping Method" && (
-<PayPalButton
+<PayPalButton 
         amount={totalPrice} 
->>>>>>> Stashed changes
         createOrder={(data, actions) => createOrder(data, actions)} 
         onSuccess={(details, data) => handleOnSuccess(details, data)}
       />)}
