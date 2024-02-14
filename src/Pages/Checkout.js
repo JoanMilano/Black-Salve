@@ -68,9 +68,14 @@ const Checkout = () => {
       return total + item.quantity;
     }, 0);
 
+
+  console.log("Shipping Type:", shippingType);
+  console.log("Total Order Quantity:", totalOrderQuantity);
+
+
     if (totalOrderQuantity > 5) {  
-      setShippingType("Priority");
       setShippingPrice(0); 
+    setShippingType("Priority");
       // automatically select priority for user
       const priorityRadioButton = document.getElementById("option2");
       if (priorityRadioButton) {
@@ -78,9 +83,14 @@ const Checkout = () => {
       }
     } else if (shippingType === "Priority" && totalOrderQuantity <= 5) {
       setShippingPrice(5); 
+<<<<<<< Updated upstream
     } else {
       setShippingPrice(0);
     } 
+=======
+    }
+    console.log(shippingType);
+>>>>>>> Stashed changes
   }
 
   useEffect(() => {
@@ -107,43 +117,49 @@ const Checkout = () => {
 
     setPriceOfProductOnes(priceOfProductOnes);
     setPriceOfProductTwos(priceOfProductTwos);
-    setSubTotalPrice(subTotalPrice);
-    setTotalPrice(totalPrice);
+    setSubTotalPrice(subTotalPrice.toFixed(2));
+    setTotalPrice(totalPrice.toFixed(2));
   }
   // eslint-disable-next-line
 }, [selectedItems, shippingPrice, shippingType]); 
 
-  const createOrder = (actions) => { 
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            currency_code: 'USD',
-            value: totalPrice,
-          },
-          items: selectedItems.map(item => ({
-              title: item.title,
-              description: item.description,
-              quantity: item.quantity,
-              category: 'PHYSICAL_GOODS',
-              unit_amount: {
-                currency_code: 'USD',
-                value: item.price.toFixed(2),
-              },
-            })),
-        },
-      ],
-    });
-  }; 
 
-  const handleOnSuccess = (details, data) => {
-    const { payer } = details;
-    const customerName = payer.name.given_name;
-    const customerOrderID =  data;
-    alert(
-      `Transaction complete! Thank You for your purchase ${customerName}, your order ID is ${customerOrderID}`
-    );
-  };
+const createOrder = (data, actions) => { 
+  return actions.order.create({
+    purchase_units: [
+      {
+        amount: {
+          currency_code: 'USD',
+          value: totalPrice,
+          breakdown: {
+            item_total: Number(subTotalPrice)
+          }
+        },
+        items: selectedItems.map(item => ({
+            name: item.title,
+            description: item.description,
+            quantity: item.quantity,
+            category: 'PHYSICAL_GOODS',
+            unit_amount: {
+              currency_code: 'USD',
+              value: item.price.toFixed(2),
+            },
+          }))
+          
+      },
+    ],
+  });
+}; 
+
+const handleOnSuccess = (details, data) => {
+  const { payer } = details;
+  const customerName = payer.name.given_name;
+  const customerOrderID =  data;
+  alert(
+    `Transaction complete! Thank You for your purchase ${customerName}, your order ID is ${customerOrderID}`
+  );
+};
+
 
     return (
       <div className="checkout-page">
@@ -225,12 +241,12 @@ const Checkout = () => {
  <section className="shipping-section">
       <form className="shipping-form" required> 
         <div>
-      <input type="radio" id="option1" name="options" value="option1" onClick={() => setShippingType('Standard') }/>
+      <input type="radio" id="option1" name="options" value="Standard" onClick={() => setShippingType('Standard') }/>
   <label htmlFor="option1">Standard Shipping</label>
   <p>Free - 5 to 7 bussiness days</p>
   </div>
   <div>
-  <input type="radio" id="option2" name="options" value="option2" onClick={() => setShippingType('Priority') }/>
+  <input type="radio" id="option2" name="options" value="Priority" onClick={() => setShippingType('Priority') }/>
   <label htmlFor="option2">Priority Shipping</label>
   <p>5$ or Free for orders over 5 items</p>
   <p>3 to 5 bussiness days</p>
@@ -241,17 +257,24 @@ const Checkout = () => {
   <h3>Order Details</h3>
     <p>{selectedItems.find(item => item.title === productOne.title)?.quantity || 0} 1oz {priceOfProductOnes.toFixed(2)}$</p>
      <p>{selectedItems.find(item => item.title === productTwo.title)?.quantity || 0} 2oz {priceOfProductTwos.toFixed(2)}$</p>  {/* conditionally render if theres a quantity > 0*/ }
-    <p>Subtotal: {subTotalPrice.toFixed(2)}$</p>
+    <p>Subtotal: {subTotalPrice}$</p>
     <p>{shippingType}: {shippingPrice}$</p>
-    <p>Total {totalPrice.toFixed(2)}$</p> {/*cap it off after the .00 so its not .000000000000000 */}
+    <p>Total {totalPrice}$</p>
  </section>
  </div>
  <section className="paypal-section">
   <h1>Purchase here!</h1>
+<<<<<<< Updated upstream
   {shippingType === "" && (<p>Select a shipping option before proceeding to checkout.</p>)}
 {shippingType !== "" && (
 <PayPalButton 
         amount={totalPrice.toFixed(2)} 
+=======
+  {shippingType === "Select a Shipping Method" && (<p>Select a shipping option before proceeding to checkout.</p>)}
+{shippingType !== "Select a Shipping Method" && (
+<PayPalButton
+        amount={totalPrice} 
+>>>>>>> Stashed changes
         createOrder={(data, actions) => createOrder(data, actions)} 
         onSuccess={(details, data) => handleOnSuccess(details, data)}
       />)}
