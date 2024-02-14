@@ -5,7 +5,7 @@ import { Dropdown, DropdownDivider, DropdownItem, DropdownMenu, DropdownToggle }
 import { PayPalButton } from "react-paypal-button-v2";
 
 
-// 1. dropdown wont go back to 0 
+// 1. shipping is always 0 
 const Checkout = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [firstButtonText, setFirstButtonText] = useState("0");
@@ -16,7 +16,7 @@ const Checkout = () => {
   const [priceOfProductTwos, setPriceOfProductTwos] = useState(0);
   const [subTotalPrice, setSubTotalPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-
+ console.log(shippingType); 
   const productOne = {
     title: '1oz',
     description: '1oz container of Black Salve',
@@ -63,7 +63,7 @@ const Checkout = () => {
     }
   };
 
-  function calculateShipping(selectedItems, shippingType) {
+  function calculateShipping(selectedItems) {
     const totalOrderQuantity = selectedItems.reduce((total, item) => {
       return total + item.quantity;
     }, 0);
@@ -78,7 +78,9 @@ const Checkout = () => {
       }
     } else if (shippingType === "Priority" && totalOrderQuantity <= 5) {
       setShippingPrice(5); 
-    }
+    } else {
+      setShippingPrice(0);
+    } 
   }
 
   useEffect(() => {
@@ -246,8 +248,8 @@ const Checkout = () => {
  </div>
  <section className="paypal-section">
   <h1>Purchase here!</h1>
-  {shippingType === "Select a Shipping Method" && (<p>Select a shipping option before proceeding to checkout.</p>)}
-{shippingType !== "Select a Shipping Method" && (
+  {shippingType === "" && (<p>Select a shipping option before proceeding to checkout.</p>)}
+{shippingType !== "" && (
 <PayPalButton 
         amount={totalPrice.toFixed(2)} 
         createOrder={(data, actions) => createOrder(data, actions)} 
