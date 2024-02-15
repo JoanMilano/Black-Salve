@@ -5,8 +5,9 @@ import { Dropdown, DropdownDivider, DropdownItem, DropdownMenu, DropdownToggle }
 import { PayPalButton } from "react-paypal-button-v2";
 
 
-// 1. shipping is always 0 
+// 1.  
 const Checkout = () => {
+
   const [selectedItems, setSelectedItems] = useState([]);
   const [firstButtonText, setFirstButtonText] = useState("0");
   const [secondButtonText, setSecondButtonText] = useState("0");
@@ -164,6 +165,7 @@ const handleOnSuccess = (details) => {
 };
 
 
+
     return (
       <div className="checkout-page">
       <div className="checkout-title"><h2>Checkout</h2></div>
@@ -267,8 +269,9 @@ const handleOnSuccess = (details) => {
  </div>
  <section className="paypal-section">
   <h1>Purchase here!</h1>
+  {selectedItems.reduce((total, item) => total + item.quantity, 0) === 0 && (<p>Select a at least one item before proceeding to checkout.</p>)}
   {shippingType === "Select a Shipping Method" && (<p>Select a shipping option before proceeding to checkout.</p>)}
-{shippingType !== "Select a Shipping Method" && (
+{shippingType !== "Select a Shipping Method" && selectedItems.reduce((total, item) => total + item.quantity, 0) > 0 && (
 <PayPalButton
         amount={totalPrice} 
         createOrder={(actions, data) => createOrder(actions, data)} 
