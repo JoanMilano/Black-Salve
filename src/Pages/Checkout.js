@@ -154,10 +154,10 @@ const createOrder = (data, actions) => {
   });
 }; 
 
-const handleOnSuccess = (details, data) => {
+const handleOnSuccess = (details) => {
   const { payer } = details;
   const customerName = payer.name.given_name;
-  const customerOrderID =  data;
+  const customerOrderID =  details.orderID;
   alert(
     `Transaction complete! Thank You for your purchase ${customerName}, your order ID is ${customerOrderID}`
   );
@@ -271,8 +271,8 @@ const handleOnSuccess = (details, data) => {
 {shippingType !== "Select a Shipping Method" && (
 <PayPalButton
         amount={totalPrice} 
-        createOrder={(data, actions) => createOrder(data, actions)} 
-        onSuccess={(details, data) => handleOnSuccess(details, data)}
+        createOrder={(actions, data) => createOrder(actions, data)} 
+        onSuccess={(details) => handleOnSuccess(details)}
       />)}
  </section>
  </div>
