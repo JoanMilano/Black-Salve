@@ -114,22 +114,16 @@ const Checkout = () => {
 
 
 const createOrder = (data, actions) => { 
-  const itemTotal = selectedItems.reduce((priceTotal, item) => {
-    return priceTotal += item.quantity * item.price; 
-  }, 0);
 
   return actions.order.create({
+    application_context: {
+      locale: 'en-US'
+    },
     purchase_units: [
       {
         amount: {
           currency_code: 'USD',
           value: totalPrice,
-          breakdown: {
-            item_total: {
-              currency_code: 'USD',
-              value: itemTotal
-             } // set item_total to a number value
-          }
         },
         items: selectedItems.map(item => ({
             name: item.title,
