@@ -253,7 +253,7 @@ const handleOnSuccess = (details) => {
   <div>
   <input type="radio" id="option2" name="options" value="Priority" onClick={() => setShippingType('Priority') }/>
   <label htmlFor="option2">Priority Shipping</label>
-  <p>5$ or Free for orders over 5 items</p>
+  <p>5$ or Free for orders over 5 items!</p>
   <p>3 to 5 bussiness days</p>
   </div>
       </form>

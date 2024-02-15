@@ -64,7 +64,7 @@ setButtonText("Send"); // when done sending set button back send
             </div>
             </div>
           <p>+1 (916)-397-5997</p> {/* link? */}
-          <p>grandmashealingsalve@gmail.com</p> {/* link? */}
+          <a href="mailto:grandmashealingsalve@gmail.com">grandmashealingsalve@gmail.com</a> {/* link? */}
           <p>Monday-Friday: 8:00am-5:00pm</p>
           <form onSubmit={handleSubmit} className="contact-form">
                <Row>
