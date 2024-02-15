@@ -16,7 +16,6 @@ const Checkout = () => {
   const [priceOfProductTwos, setPriceOfProductTwos] = useState(0);
   const [subTotalPrice, setSubTotalPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
- console.log(shippingType); 
   const productOne = {
     title: '1oz',
     description: '1oz container of Black Salve',
@@ -90,7 +89,7 @@ const Checkout = () => {
     calculateShipping(selectedItems, shippingPrice, shippingType);
 
     const priceOfProductOnes = selectedItems.filter(item => item.title === productOne.title).reduce((priceTotal, item) => {
-      return priceTotal += item.quantity * item.price;
+      return priceTotal + (item.quantity * item.price);
     }, 0);
 
     const priceOfProductTwos = selectedItems.filter(item => item.title === productTwo.title).reduce((priceTotal, item) => {
@@ -115,6 +114,10 @@ const Checkout = () => {
 
 
 const createOrder = (data, actions) => { 
+  const itemTotal = selectedItems.reduce((priceTotal, item) => {
+    return priceTotal += item.quantity * item.price; 
+  }, 0);
+
   return actions.order.create({
     purchase_units: [
       {
@@ -122,7 +125,10 @@ const createOrder = (data, actions) => {
           currency_code: 'USD',
           value: totalPrice,
           breakdown: {
-            item_total: Number(subTotalPrice)
+            item_total: {
+              currency_code: 'USD',
+              value: itemTotal
+             } // set item_total to a number value
           }
         },
         items: selectedItems.map(item => ({
@@ -132,7 +138,7 @@ const createOrder = (data, actions) => {
             category: 'PHYSICAL_GOODS',
             unit_amount: {
               currency_code: 'USD',
-              value: item.price.toFixed(2),
+              value: item.price
             },
           }))
           
