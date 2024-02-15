@@ -68,10 +68,6 @@ const Checkout = () => {
     }, 0);
 
 
-  console.log("Shipping Type:", shippingType);
-  console.log("Total Order Quantity:", totalOrderQuantity);
-
-
     if (totalOrderQuantity > 5) {  
       setShippingPrice(0); 
     setShippingType("Priority");
@@ -82,14 +78,9 @@ const Checkout = () => {
       }
     } else if (shippingType === "Priority" && totalOrderQuantity <= 5) {
       setShippingPrice(5); 
-<<<<<<< Updated upstream
     } else {
-      setShippingPrice(0);
-    } 
-=======
+      setShippingPrice(0); 
     }
-    console.log(shippingType);
->>>>>>> Stashed changes
   }
 
   useEffect(() => {
@@ -124,7 +115,9 @@ const Checkout = () => {
 
 
 const createOrder = (data, actions) => { 
-
+  const itemTotal = selectedItems.reduce((priceTotal, item) => {
+    return priceTotal += item.quantity * item.price; 
+  }, 0);
   return actions.order.create({
     application_context: {
       locale: 'en-US'
@@ -134,7 +127,17 @@ const createOrder = (data, actions) => {
         amount: {
           currency_code: 'USD',
           value: totalPrice,
-        },
+          breakdown: {
+            item_total: {
+              currency_code: 'USD',
+              value: itemTotal
+             }, // set item_total to a number value
+             shipping: {
+              currency_code: 'USD',
+              value: shippingPrice
+            }
+            }
+            },
         items: selectedItems.map(item => ({
             name: item.title,
             description: item.description,
@@ -264,17 +267,10 @@ const handleOnSuccess = (details, data) => {
  </div>
  <section className="paypal-section">
   <h1>Purchase here!</h1>
-<<<<<<< Updated upstream
-  {shippingType === "" && (<p>Select a shipping option before proceeding to checkout.</p>)}
-{shippingType !== "" && (
-<PayPalButton 
-        amount={totalPrice.toFixed(2)} 
-=======
   {shippingType === "Select a Shipping Method" && (<p>Select a shipping option before proceeding to checkout.</p>)}
 {shippingType !== "Select a Shipping Method" && (
 <PayPalButton
         amount={totalPrice} 
->>>>>>> Stashed changes
         createOrder={(data, actions) => createOrder(data, actions)} 
         onSuccess={(details, data) => handleOnSuccess(details, data)}
       />)}
