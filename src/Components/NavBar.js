@@ -48,8 +48,8 @@ export const NavBar = () => {
             </Nav>
           <span className="navbar-text">
             <div className="social-icon-nav">
-                <NavLink to="/checkout"><img src={Gmail} className="gmail-icon"/></NavLink>
-                <NavLink target="_blank" rel="noreferrer"><img src={FaceBook} className="facebook-icon"/></NavLink>
+                <NavLink to="/checkout"><img src={Gmail} className="gmail-icon" alt="Gmail Icon With Link"/></NavLink>
+                <NavLink target="_blank" rel="noreferrer"><img src={FaceBook} className="facebook-icon" alt="FaceBook Icon With Link"/></NavLink>
             </div>
           </span>
       </Navbar.Collapse>
