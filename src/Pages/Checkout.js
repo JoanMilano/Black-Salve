@@ -5,10 +5,8 @@ import { Dropdown, DropdownDivider, DropdownItem, DropdownMenu, DropdownToggle }
 import { PayPalButton } from "react-paypal-button-v2";
 
 
-// 1.  
+// 1.  order id is undefined
 const Checkout = () => {
-
-  const clientId = process.env.REACT_APP_CLIENT_ID;
   const [selectedItems, setSelectedItems] = useState([]);
   const [firstButtonText, setFirstButtonText] = useState("0");
   const [secondButtonText, setSecondButtonText] = useState("0");
@@ -163,8 +161,7 @@ const handleOnSuccess = (details) => {
   alert(
     `Transaction complete! Thank You for your purchase ${customerName}, your order ID is ${customerOrderID}`
   );
-};
-
+}
 
 
     return (
@@ -274,7 +271,6 @@ const handleOnSuccess = (details) => {
   {shippingType === "Select a Shipping Method" && (<p>Select a shipping option before proceeding to checkout.</p>)}
 {shippingType !== "Select a Shipping Method" && selectedItems.reduce((total, item) => total + item.quantity, 0) > 0 && (
 <PayPalButton
-        clientId={clientId}
         amount={totalPrice} 
         createOrder={(actions, data) => createOrder(actions, data)} 
         onSuccess={(details) => handleOnSuccess(details)}
