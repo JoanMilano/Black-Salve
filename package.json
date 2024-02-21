@@ -26,7 +26,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm-run-all -p start-react",
+    "start": "npm-run-all -p start-react start-email-server",
     "start-react": "react-scripts start",
     "start-email-server": "node Back-end/Email.js",
     "start-payment-server": "node Back-end/Payment.js",
