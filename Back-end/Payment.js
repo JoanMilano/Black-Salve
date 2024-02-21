@@ -174,7 +174,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve("./public/index.html"));
 });
 
-PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Node server listening at http://localhost:${PORT}/`);
