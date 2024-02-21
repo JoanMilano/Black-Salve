@@ -147,7 +147,7 @@ async function handleResponse(response) {
   }
 }
 
-app.post("http://localhost:3001/api/orders", async (req, res) => {
+app.post("/api/orders", async (req, res) => {
   try {
     // use the cart information passed from the front-end to calculate the order amount detals
     const { cart } = req.body;
@@ -175,7 +175,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve("./public/index.html"));
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3001 ;
 
 app.listen(PORT, () => {
   console.log(`Node server listening at http://localhost:${PORT}/`);
