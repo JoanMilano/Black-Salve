@@ -10,6 +10,7 @@ const paypal = require('paypal-rest-sdk');
 require('dotenv').config();
 const cors = require('cors');
 const path = require('path')
+const fetch = require('node-fetch')
 const app = express();
 
 
@@ -146,7 +147,7 @@ async function handleResponse(response) {
   }
 }
 
-app.post("/api/orders", async (req, res) => {
+app.post("http://localhost:3001/api/orders", async (req, res) => {
   try {
     // use the cart information passed from the front-end to calculate the order amount detals
     const { cart } = req.body;
