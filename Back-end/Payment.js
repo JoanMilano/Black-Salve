@@ -16,7 +16,7 @@ const app = express();
 
 //Configure
 app.use(cors({
-    origin: 'http://localhost:3001'
+    origin: 'http://localhost:3000'
   }));
 // Configure PayPal SDK
 const PAYPAL_CLIENT_ID = process.env.CLIENT_ID;
