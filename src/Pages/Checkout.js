@@ -39,15 +39,18 @@ const Checkout = () => {
                   // use the "body" param to optionally pass additional order information
                   // like product ids and quantities
                   body: JSON.stringify({
-                    cart: [
-                      {
-                        id: "itemOne",
-                        quantity: 1,
-                        price: 100.00
-                      },
-                    ],
-                  }),
-                });
+                    cart: {
+                      id: "cart",
+                      items: [
+                        {
+                          id: "itemOne",
+                          quantity: 1,
+                          price: 100.00
+                        },
+                      ],
+                    },
+                  })
+                })
   
                 const orderData = await response.json();
   

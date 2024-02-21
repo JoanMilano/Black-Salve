@@ -81,13 +81,15 @@ const createOrder = async (cart) => {
 
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders`;
+  const totalPrice = cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
+  console.log(totalPrice)
   const payload = {
     intent: "CAPTURE",
     purchase_units: [
       {
         amount: {
           currency_code: "USD",
-          value: cart.price,
+          value: totalPrice,
         },
       },
     ],
@@ -155,7 +157,7 @@ app.post("/api/orders", async (req, res) => {
     res.status(httpStatusCode).json(jsonResponse);
   } catch (error) {
     console.error("Failed to create order:", error);
-    res.status(500).json({ error: "Failed to create order." });
+    res.status(400).json({ error: "Failed to create order." });
   }
 });
 
