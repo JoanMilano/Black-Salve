@@ -52,7 +52,6 @@ setButtonText("Send"); // when done sending set button back send
         return (
             <section className="contact-page" id="get-in-touch">
                 <Container>
-                    <Row className="align-items-center">
                         <Col md={6}>
                         </Col>
                         <Col md={6}>
@@ -62,10 +61,10 @@ setButtonText("Send"); // when done sending set button back send
                 <a href="mailto:grandmashealingsalve@gmail.com" target="_blank" rel="noreferrer"><img src={Gmail} alt="Gmail Icon Link" /></a>
                 <a href="https://www.facebook.com/Grandmashealingsalve/" target="_blank" rel="noreferrer"><img src={FaceBook} alt="FaceBook Icon Link"/></a>
             </div>
-            </div>
           <p>+1 (916)-397-5997</p> {/* link? */}
           <a href="mailto:grandmashealingsalve@gmail.com">grandmashealingsalve@gmail.com</a> {/* link? */}
           <p>Monday-Friday: 8:00am-5:00pm</p>
+          </div>
           <form onSubmit={handleSubmit} className="contact-form">
                <Row>
                <Col sm={6} className="px-1">
@@ -98,7 +97,6 @@ setButtonText("Send"); // when done sending set button back send
                                 </Row>
                             </form>
                         </Col>
-                    </Row>
                 </Container>
             </section>
         ) 

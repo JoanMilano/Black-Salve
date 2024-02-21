@@ -114,7 +114,7 @@ const Checkout = () => {
 }, [selectedItems, shippingPrice, shippingType]); 
 
 
-const createOrder = (data, actions) => { 
+const createOrder = ( actions ) => { 
   const itemTotal = selectedItems.reduce((priceTotal, item) => {
     return priceTotal += item.quantity * item.price; 
   }, 0);
@@ -238,6 +238,7 @@ const handleOnSuccess = (details) => {
     <DropdownItem>Contact for WholeSale</DropdownItem> 
   </DropdownMenu>
 </Dropdown>
+
  </section>
  <div className="shipping-details-pay">
   <div className="shipping-details">
@@ -248,7 +249,7 @@ const handleOnSuccess = (details) => {
   <label htmlFor="option1">Standard Shipping</label>
   <p>Free - 5 to 7 bussiness days</p>
   </div>
-  <div>
+  <div className="shipping-option-two">
   <input type="radio" id="option2" name="options" value="Priority" onClick={() => setShippingType('Priority') }/>
   <label htmlFor="option2">Priority Shipping</label>
   <p>5$ or Free for orders over 5 items!</p>
@@ -267,8 +268,8 @@ const handleOnSuccess = (details) => {
  </div>
  <section className="paypal-section">
   <h1>Purchase here!</h1>
-  {selectedItems.reduce((total, item) => total + item.quantity, 0) === 0 && (<p>Select a at least one item before proceeding to checkout.</p>)}
-  {shippingType === "Select a Shipping Method" && (<p>Select a shipping option before proceeding to checkout.</p>)}
+  {selectedItems.reduce((total, item) => total + item.quantity, 0) === 0 && (<p>Select a at least one item before proceeding to checkout!</p>)}
+  {shippingType === "Select a Shipping Method" && (<p>Select a shipping option before proceeding to checkout!</p>)}
 {shippingType !== "Select a Shipping Method" && selectedItems.reduce((total, item) => total + item.quantity, 0) > 0 && (
 <PayPalButton
         amount={totalPrice} 

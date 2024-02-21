@@ -33,23 +33,23 @@ export const NavBar = () => {
       </Navbar.Toggle>
       <Navbar.Collapse id="nav-container">
             <Nav className="navbar-links">
-            <NavLink to='/'> {/* Try out router's activeClassName as sm point during styling*/}
+            <NavLink to='/' className="nav-link">
               HomePage
             </NavLink>
-            <NavLink to="/info">
+            <NavLink to="/info" className="nav-link">
               Uses & Testimonials
             </NavLink>
-            <NavLink to="/contact">
+            <NavLink to="/contact" className="nav-link">
               Get In Touch
             </NavLink>
-            <NavLink to="/checkout">
+            <NavLink to="/checkout" className="nav-link">
               Purchase Here!
             </NavLink>
             </Nav>
           <span className="navbar-text">
             <div className="social-icon-nav">
-                <NavLink to="/checkout"><img src={Gmail} className="gmail-icon" alt="Gmail Icon With Link"/></NavLink>
-                <NavLink target="_blank" rel="noreferrer"><img src={FaceBook} className="facebook-icon" alt="FaceBook Icon With Link"/></NavLink>
+                <a href="mailto:grandmashealingsalve@gmail.com" rel="noreferrer"><img src={Gmail} className="gmail-icon" alt="Gmail Icon With Link"/></a>
+                <a href="https://www.facebook.com/Grandmashealingsalve/" target="_blank" rel="noreferrer"><img src={FaceBook} className="facebook-icon" alt="FaceBook Icon With Link" /></a>
             </div>
           </span>
       </Navbar.Collapse>

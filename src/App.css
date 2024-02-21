@@ -1,4 +1,14 @@
 
+:root {
+    --background-color1: #2f72a9; 
+    --background-color2: #6096B4; 
+    --background-color3: #85cee8; 
+    --background-color4: #c7edff; 
+    --background-color5: #d8eeff; 
+
+    --accent-color1: #06243c;
+}
+
 /************* Default CSS *************/ 
 
 * {
@@ -38,19 +48,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav {
     width: 100%;
-    background-color: rgb(45, 174, 137);
-    position: fixed; 
-    top: 0; 
-    margin-bottom: 20px;
+    background-color: transparent;
+    position: fixed !important; 
     z-index: 1000 !important;
+    transition:  0.32s ease-in-out;
 }
 .navbar-links {
     display: flex;
       align-items: center;
     width: 150px;
+
 }
 .scrolled {
-    background-color: rgb(91, 121, 255); 
+    background-color: var(--background-color2);
+    border: 3px solid var(--accent-color1); 
 }
 
 .social-icon-nav {
@@ -67,11 +78,28 @@ h1, h2, h3, h4, h5, h6 {
     height: 50px; 
     margin-left: 40px;
 }
+
+@media  (min-width: 1000px) {
+    .navbar-links {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    } 
+}
+@media (max-width: 1000px) {
+    .nav {
+       background-color: var(--background-color2); 
+    border: 3px solid var(--accent-color1);
+    }
+
+}
 /*********** Home  *************/
 
 .landing-page {/* fix footer */ 
     padding: 0;
     margin: 0; 
+    background-color: var(--background-color1);
 }
 
 
@@ -80,22 +108,24 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     width: 100%;
     height: auto;
-    padding: 120px 5px 60px 5px;
+    padding: 120px 6px 60px 5px;
     display: flex;
     flex-wrap: wrap; 
     justify-content: space-around;
     align-items: center;
-    background-color: aqua;
-
+    background-color: var(--background-color1);
+    border: 3px solid var(--accent-color1);
 }
-.salve {
+.salve-car {
     height: auto;
     width: 50%; 
-    max-width: 80%;
+    max-width: 500px;
     min-width: 400px;
 }
 .d-block {
     height: 310px;
+    border-radius: 10%;
+    border: 3px solid var(--accent-color1);
 }
 
 .button-container {
@@ -111,12 +141,18 @@ h1, h2, h3, h4, h5, h6 {
     margin: 60px 0px 0px 120px;
     height: 80px; 
     width: 200px; 
+    background-color: var(--background-color3);
+    font-size: 25px;;
+    border-radius: 10%;
+    border: 3px solid var(--accent-color1);
+    
 }
 
 .second-section {
-    background-color: aquamarine;
+    background-color: var(--background-color3);
     height: auto;
     padding: 35px 50px 35px 50px;
+    border: 3px solid var(--accent-color1);
 }
 
 
@@ -124,45 +160,88 @@ h1, h2, h3, h4, h5, h6 {
     margin: 30px 20px 30px 20px;
     max-width: 800px; 
     align-items: center;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .second-section img {
     max-width: 300px;  
     height: 280px;
     float: right; 
-    margin: 5%;
+    margin: 5% 5% 5% 9%;
+    top: 500px;
+    border-radius: 5%;
+    border: 3px solid var(--accent-color1);
+}
+.logo-img-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 50px 85px 50px; 
+    margin-top: 50px;
+    background-color: var(--background-color1);
 }
 .logo-img {
-    width: 100%; 
-    height: 400px
+    max-width: 510px; 
+    height: auto; border-radius: 50%;
+    border: 3px solid var(--accent-color1);
+}
+@media (min-width: 1090px) {
+    .second-section img  {
+      margin-top: -25px;
+
+    }
+}
+@media (min-width: 1300px) {
+    .second-section img  {
+        margin-top: -125px;
+    }
+}
+@media (max-width: 700px) {
+    .second-section img  {
+        margin-left: 1250px;
+    }
 }
 
 /*********** Info *************/
 
+.info-body {
+    background-color: var(--background-color1);
+    padding-top: 50px;
+    margin: 0;
+}
 
 .use-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 50px;
-    background-color: blanchedalmond;
+    background-color: var(--background-color5);
+    font-size: 22px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 3px solid var(--accent-color1);
 }
 .testimonial-text-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0px;
-    width: 100%; 
-
+    width: 100%;
     padding: 50px;
-    background-color: rgba(255, 127, 80, 0.581);
+    background-color: var(--background-color5);
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 3px solid var(--accent-color1);
 }
 .testimonial-text-section li {
     max-width: 800px;
-    margin-bottom: 20px;
+    margin-bottom: 20px
 }
 .testimonial-img-section {
     padding: 50px;
-    background-color: rgba(143, 188, 143, 0.614);
+    background-color: var(--background-color5);
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 3px solid var(--accent-color1);
 }
 .testimonial-img-section img {
     width: 400px; 
@@ -176,27 +255,41 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .test {
-    flex-direction: column;
-    margin-bottom: 100px;
+    margin-bottom: 180px;
+}
+.test p {
+    padding-top: 40px;
 }
 .disclaimer-section {
     display: flex; 
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 50px;
-    background-color: rgb(230, 184, 255);
+    background-color: var(--background-color5);
+    border: 3px solid var(--accent-color1);
+}
+.disclaimer-section p {
+    max-width: 700px;
 }
 
-
+@media (max-width: 800px) {
+    .test img  {
+        margin-left: 1250px;
+    }
+}
 /*********** Contact *************/
 
 .contact-page {
-        padding: 50px;
-        background-color: bisque;
+        padding-top: 150px;
+        background-color: var(--background-color3);
 }
 .social-icon-contact img {
     height: 50px; 
     margin: 15px 20px 30px 15px;
+}
+.contact-info {
+    font-size: 20px;
 }
 .contact-form input, .contact-form textarea {
     width: 100%;
@@ -226,7 +319,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact-form button {
     font-weight: 700;
     color: #000;
-    background-color: burlywood;
+    background-color: var(--background-color2);
     padding: 14px 48px;
     font-size: 18px;
     margin-top: 25px;
@@ -234,6 +327,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     transition: 0.3s ease-in-out;
     margin-bottom: 30px;
+    border: 3px solid var(--accent-color1);
 }
 .contact-form button span {
     z-index: 1;
@@ -241,25 +335,46 @@ h1, h2, h3, h4, h5, h6 {
   }
 .contact-form button:hover {
     background-color: black;
-    color: burlywood;
+    color: var(--background-color2);
 }
 
 /*********** Checkout ******************/
 .checkout-page {
-    background-color: antiquewhite;
+    padding-top: 100px;
+    background-color: var(--background-color3);
 }
 .checkout-title {
     margin-left: 80px;
-    padding: 20px 20px 20px 20px;
-    background-color: beige;
+    padding: 20px 20px 40px 20px;
+}
+.checkout-title h2 {
+    font-size: 40px;
+}
+.salve-option-one,
+.salve-option-two {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color1);
+    padding: 50px; 
+
+}
+.salve-option-one img, 
+.salve-option-two img {
+    width: 300px; 
+    border-radius: 20%;
+    border: 3px solid var(--accent-color1);
 }
 .dropdown {
- margin-left: 10%;
+    margin-left: 60px;
+ margin-top: 20px;
 }
 .btn-color {
-    background-color: rgb(212, 139, 139) !important;
+    background-color: var(--background-color3) !important;
   color: white !important; 
-  border-color: rgb(23, 23, 119) !important; 
+  border: 1.5px solid var(--accent-color1) !important; 
   height: 50px !important; 
   font-size: 16px !important; 
 }
@@ -269,36 +384,27 @@ h1, h2, h3, h4, h5, h6 {
 .drop-menu {
     max-height: 120px; /* Set maximum height for the dropdown menu */
     overflow-y: scroll; /* Enable vertical scrolling */
+    background-color: var(--background-color5) !important;
 }
-.salve-option-one,
-.salve-option-two {
-    display: flex; 
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 128, 0, 0.804) ;
-    padding: 50px; 
-
-}
-.salve-option-one img, 
-.salve-option-two img {
-    width: 300px; 
-    border-radius: 20%;
-    border: 3px solid #121212;
-}
+ 
 .shipping-details-pay {
     display: grid; 
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 
-    "shep-det paypal"
-    ;
+    "shep-det paypal"; 
+    
 }
 .shipping-details {
     grid-area: shep-det;
+    font-size: 20px;
+    border: 3px solid var(--accent-color1);
 }
 .shipping-section {
     padding: 25px;
-    background-color: rgba(0, 255, 255, 0.547);
+    background-color: var(--background-color3);
+}
+.shipping-option-two {
+    margin-top: 20px;
 }
 .shipping-form {
     display: flex;
@@ -314,22 +420,57 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     padding: 20px; 
-    background-color: rgb(92, 64, 231);
+    background-color: var(--background-color3);
 }
 .paypal-section {
     grid-area: paypal;
     padding: 25px;
-    background-color: burlywood;
+    background-color: var(--background-color3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--accent-color1);
+}
+.paypal-section h1 {
+    margin-bottom: 60px;
+}
+.paypal-section p {
+    color: red;
+}
+@media only screen and (max-width: 768px) {
+    .shipping-details-pay {
+        display: grid; 
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "shep-det"
+        "paypal"; 
+        
+    }
+    .shipping-option-two  {
+        padding-left: 80px;
+    }
 }
 /*********** Footer ******************/
 
 .footer {
-    background-color: rgb(232, 130, 130); 
+    background-color: var(--background-color2);
+    border: 3px solid var(--accent-color1); 
     width: 100%;
-    padding-bottom: 20px;
+    padding: 40px 40px 40px 40px;
     margin-top: auto;
     position: relative; 
     bottom: 0;
     left: 0; 
     right: 0;
+}
+
+.social-icon-footer {
+ margin-left: 66%;
+ margin-bottom: 20px;
+ width: auto;
+}
+.footer p {
+    font-size: 20px;
+    color: var(--accent-color1);
 }

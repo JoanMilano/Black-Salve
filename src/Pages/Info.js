@@ -58,7 +58,7 @@ const Info = () => {
     <section className="testimonial-img-section">
         <div className="test">
         <img src={arm} alt="Arm Before And After"/>
-        <p>M. Quintana, Buena Park, CA (Pictures to the right): Just a little note to let you know that your Grandma's Healing Salve not only works, it works great!  I couldn't believe the results in just one day.  It took the pain and bump I had with the lesion caused by MRSA.  Hopefully I will not have anymore outbreaks it's such a ugly painful thing to have), but if I do - I will start your Grandma's Miracle Healing Salve right away!  I have now been putting the salve on my dog's skin infections (she has a lot of skin allergies possible staph, too) and it has improved.  About my MRSA, my doctor thinks more than likely I got infected from working in a pre-school/daycare. See some of the photos below!!! </p>
+        <p>M. Quintana, Buena Park, CA (Pictures to the right): Just a little note to let you know that your Grandma's Healing Salve not only works, it works great!  I couldn't believe the results in just one day.  It took the pain and bump I had with the lesion caused by MRSA.  Hopefully I will not have anymore outbreaks it's such a ugly painful thing to have), but if I do - I will start your Grandma's Miracle Healing Salve right away!  I have now been putting the salve on my dog's skin infections (she has a lot of skin allergies possible staph, too) and it has improved.  About my MRSA, my doctor thinks more than likely I got infected from working in a pre-school/daycare.</p>
         </div>
         <div className="test">
         <img src={foot} alt="Foot Before And After" />
