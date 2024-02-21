@@ -1,4 +1,10 @@
 
+
+/*  Adjust the top padding instead of undoing the color 
+transition for the navbar    */ 
+
+
+
 :root {
     --background-color1: #2f72a9; 
     --background-color2: #6096B4; 
