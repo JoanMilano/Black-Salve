@@ -21,7 +21,7 @@ const Checkout = () => {
     const [message, setMessage] = useState("");
   
     return (
-      <div className="App">
+      <div className="app">
         <PayPalScriptProvider options={initialOptions}>
           <PayPalButtons
             style={{
