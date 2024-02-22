@@ -72,7 +72,7 @@ const Checkout = () => {
             onApprove={async (data, actions) => {
               try {
                 const response = await fetch(
-                  `/api/orders/${data.orderID}/capture`,
+                  `http://localhost:3001/api/orders/${data.orderID}/capture`, // Remove sandbox before going live & from backend base URL!!
                   {
                     method: "POST",
                     headers: {
