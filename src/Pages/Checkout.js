@@ -129,6 +129,9 @@ const Checkout = () => {
     const [message, setMessage] = useState("");
 
     const createOrder = async () => {
+      const itemTotal = selectedItems.reduce((priceTotal, item) => {
+        return priceTotal += item.quantity * item.price; 
+    }); 
       try {
         const response = await fetch("http://localhost:3001/api/orders", {
           method: "POST",
@@ -140,11 +143,40 @@ const Checkout = () => {
           body: JSON.stringify({
             cart: {
               id: "cart",
-              items: [
+              format: [
                 {
-                  id: "itemOne",
-                  quantity: 1,
-                  price: 100.00
+                  application_context: {
+                    locale: 'en-US'
+                  },
+                  purchase_units: [
+                    {
+                      amount: {
+                        currency_code: 'USD',
+                        value: totalPrice,
+                        breakdown: {
+                          item_total: {
+                            currency_code: 'USD',
+                            value: itemTotal
+                           },
+                           shipping: {
+                            currency_code: 'USD',
+                            value: shippingPrice
+                          }
+                          }
+                          },
+                      items: selectedItems.map(item => ({
+                          name: item.title,
+                          description: item.description,
+                          quantity: item.quantity,
+                          category: 'PHYSICAL_GOODS',
+                          unit_amount: {
+                            currency_code: 'USD',
+                            value: item.price
+                          },
+                        }))
+                        
+                    },
+                  ],
                 },
               ],
             },
