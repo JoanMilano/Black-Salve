@@ -13,7 +13,6 @@ const path = require('path')
 const fetch = require('node-fetch')
 const app = express();
 
-
 //Configure
 app.use(cors({
     origin: 'http://localhost:3000'
@@ -74,25 +73,49 @@ const generateAccessToken = async () => {
 
 const createOrder = async (cart) => {
   // use the cart information passed from the front-end to calculate the purchase unit details
+  
+  const subTotalPrice = Number(cart.subTotalPrice);
+  const shippingPrice = cart.shippingPrice;
+  const totalPrice = subTotalPrice + shippingPrice; 
+
   console.log(
     "shopping cart information passed from the frontend createOrder() callback:",
-    cart,
+    cart, "totalPrice:", totalPrice, "subTotalPrice:", subTotalPrice
   );
 
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders`;
-  const totalPrice = cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
   const payload = {
     intent: "CAPTURE",
     purchase_units: [
       {
-        amount: {
-          currency_code: "USD",
-          value: totalPrice,
-        },
+          amount: {
+            currency_code: 'USD',
+            value: totalPrice,
+            breakdown: {
+              item_total: {
+                currency_code: 'USD',
+                value: subTotalPrice
+               },
+               shipping: {
+                currency_code: 'USD',
+                value: shippingPrice
+              }
+            }
+          },
+          items: cart.selectedItems.map(item => ({
+              name: item.title,
+              description: item.description,
+              quantity: item.quantity,
+              category: 'PHYSICAL_GOODS',
+              unit_amount: {
+                currency_code: 'USD',
+                value: item.price
+              },
+         }))
       },
-    ],
-  };
+   ],
+};
 
   const response = await fetch(url, {
     headers: {

@@ -438,6 +438,9 @@ h1, h2, h3, h4, h5, h6 {
 .paypal-section p {
     color: red;
 }
+.success {
+    color: rgb(0, 196, 0) !important;
+}
 @media only screen and (max-width: 768px) {
     .shipping-details-pay {
         display: grid; 
@@ -473,13 +476,4 @@ h1, h2, h3, h4, h5, h6 {
 .footer p {
     font-size: 20px;
     color: var(--accent-color1);
-}
-
-/*********** paypal integration builder ******************/
-
-.app {
-    padding-top: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

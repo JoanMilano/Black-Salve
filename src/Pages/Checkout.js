@@ -9,8 +9,10 @@ import { Dropdown, DropdownDivider, DropdownItem, DropdownMenu, DropdownToggle }
 // 1.  order id is undefined
 const Checkout = () => {
   const [selectedItems, setSelectedItems] = useState([]);
+  const [message, setMessage] = useState("");
   const [firstButtonText, setFirstButtonText] = useState("0");
   const [secondButtonText, setSecondButtonText] = useState("0");
+  const [success, setSuccess] = useState(false);
   const [shippingPrice, setShippingPrice] = useState(0);
   const [shippingType, setShippingType] = useState("Select a Shipping Method");
   const [priceOfProductOnes, setPriceOfProductOnes] = useState(0);
@@ -30,12 +32,19 @@ const Checkout = () => {
     quantity: 0,
     price: 0,
   };
+
+  const initialOptions = {
+    "client-id": "AVeXX3FDtEFSDdECuQIhy2r6hQ--wZkU9o77sFL-uUkCgX7jWlihrErOOyHFpFdyzxWuOwk6xmx7-gLx",
+    "enable-funding": "card",
+    "disable-funding": "paylater,venmo",
+    "data-sdk-integration-source": "integrationbuilder_sc",
+  };
     // Renders errors or successfull transactions on the screen.
     function Message({ content }) {
       return <p>{content}</p>;
     }
   
-
+  // define what has been selected and adds it to the selectedItems array (updates dropdown buttons)
   const handleOnClick = (product, quantity, price) => {
     let selectedProduct = { title: product, quantity, price }; 
 
@@ -71,6 +80,7 @@ const Checkout = () => {
   function calculateShipping(selectedItems) {
     const totalOrderQuantity = selectedItems.reduce((total, item) => {
       return total + item.quantity;
+
     }, 0);
 
 
@@ -89,9 +99,9 @@ const Checkout = () => {
     }
   }
 
+
   useEffect(() => {
     calculatePrices(selectedItems, shippingPrice, shippingType);
-
   function calculatePrices(selectedItems, shippingPrice, shippingType) {
     calculateShipping(selectedItems, shippingPrice, shippingType);
 
@@ -116,69 +126,21 @@ const Checkout = () => {
     setSubTotalPrice(subTotalPrice.toFixed(2));
     setTotalPrice(totalPrice.toFixed(2));
   }
-  // eslint-disable-next-line
+   // eslint-disable-next-line
 }, [selectedItems, shippingPrice, shippingType]); 
 
-    const initialOptions = {
-      "client-id": "AVeXX3FDtEFSDdECuQIhy2r6hQ--wZkU9o77sFL-uUkCgX7jWlihrErOOyHFpFdyzxWuOwk6xmx7-gLx",
-      "enable-funding": "card",
-      "disable-funding": "paylater,venmo",
-      "data-sdk-integration-source": "integrationbuilder_sc",
-    };
-  
-    const [message, setMessage] = useState("");
-
     const createOrder = async () => {
-      const itemTotal = selectedItems.reduce((priceTotal, item) => {
-        return priceTotal += item.quantity * item.price; 
-    }); 
       try {
         const response = await fetch("http://localhost:3001/api/orders", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          // use the "body" param to optionally pass additional order information
-          // like product ids and quantities
           body: JSON.stringify({
             cart: {
-              id: "cart",
-              format: [
-                {
-                  application_context: {
-                    locale: 'en-US'
-                  },
-                  purchase_units: [
-                    {
-                      amount: {
-                        currency_code: 'USD',
-                        value: totalPrice,
-                        breakdown: {
-                          item_total: {
-                            currency_code: 'USD',
-                            value: itemTotal
-                           },
-                           shipping: {
-                            currency_code: 'USD',
-                            value: shippingPrice
-                          }
-                          }
-                          },
-                      items: selectedItems.map(item => ({
-                          name: item.title,
-                          description: item.description,
-                          quantity: item.quantity,
-                          category: 'PHYSICAL_GOODS',
-                          unit_amount: {
-                            currency_code: 'USD',
-                            value: item.price
-                          },
-                        }))
-                        
-                    },
-                  ],
-                },
-              ],
+              shippingPrice,
+              subTotalPrice,
+              selectedItems
             },
           })
         })
@@ -203,7 +165,7 @@ const Checkout = () => {
     const onApprove = async (data, actions) => {
       try {
         const response = await fetch(
-          `http://localhost:3001/api/orders/${data.orderID}/capture`, // Remove sandbox before going live & from backend base URL!!
+          `http://localhost:3001/api/orders/${data.orderID}/capture`, 
           {
             method: "POST",
             headers: {
@@ -232,11 +194,17 @@ const Checkout = () => {
         } else {
           // (3) Successful transaction -> Show confirmation or thank you message
           // Or go to another URL:  actions.redirect('thank_you.html');
-          const transaction =
-            orderData.purchase_units[0].payments.captures[0];
+          const transaction = orderData.purchase_units[0].payments.captures[0];
+          if (transaction.status === "COMPLETED") {
+            setSuccess(true);
           setMessage(
-            `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`,
-          );
+            `Transaction successful, Thank you for your business! Your order ID is ${transaction.id}`
+          );} else {
+            setSuccess(false);
+            setMessage(
+              `Transaction un-successful. Please review order and card details and try again. Or contact us directly, thank you!`,
+            );
+          }
           console.log(
             "Capture result",
             orderData,
@@ -367,7 +335,7 @@ const Checkout = () => {
         onApprove={onApprove}
     />
   </PayPalScriptProvider>
-  <Message content={message} />
+  <Message content={message} className="success"/>
   </>)}
  </section>
  </div>
