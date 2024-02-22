@@ -438,8 +438,13 @@ h1, h2, h3, h4, h5, h6 {
 .paypal-section p {
     color: red;
 }
-.success {
-    color: rgb(0, 196, 0) !important;
+.alert-success {
+    color: #fff !important;
+    background-color: rgb(0, 124, 0) !important;
+}
+.alert-danger {
+    color: #fff !important;
+    background-color: rgb(184, 46, 0) !important;
 }
 @media only screen and (max-width: 768px) {
     .shipping-details-pay {

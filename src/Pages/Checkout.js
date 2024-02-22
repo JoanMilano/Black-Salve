@@ -41,7 +41,7 @@ const Checkout = () => {
   };
     // Renders errors or successfull transactions on the screen.
     function Message({ content }) {
-      return <p>{content}</p>;
+      return <p className={success ? "alert alert-success" : "alert alert-danger"}>{content}</p>;
     }
   
   // define what has been selected and adds it to the selectedItems array (updates dropdown buttons)
@@ -335,7 +335,7 @@ const Checkout = () => {
         onApprove={onApprove}
     />
   </PayPalScriptProvider>
-  <Message content={message} className="success"/>
+  <Message content={message} />
   </>)}
  </section>
  </div>
