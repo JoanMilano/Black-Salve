@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import fetch from "node-fetch";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import oneOz from "../assets/imgs/open1oz.avif";
 import twoOz from "../assets/imgs/open2oz.avif";
 import { Dropdown, DropdownDivider, DropdownItem, DropdownMenu, DropdownToggle } from "react-bootstrap";
 
@@ -41,7 +42,7 @@ const Checkout = () => {
   };
     // Renders errors or successfull transactions on the screen.
     function Message({ content }) {
-      return <p className={success ? "alert alert-success" : "alert alert-danger"}>{content}</p>;
+      return <p className={success ? "alert alert-success" : ""}>{content}</p>;
     }
   
   // define what has been selected and adds it to the selectedItems array (updates dropdown buttons)
@@ -226,7 +227,7 @@ const Checkout = () => {
       <div className="checkout-title"><h2>Checkout</h2></div>
 
       <section className="salve-option-one">
-      <img src={twoOz} alt="1oz tin of Black Salve" />
+      <img src={oneOz} alt="1oz tin of Black Salve" />
       <Dropdown className="dropdown">
   <button variant="info" className="btn btn-color btn-text">{firstButtonText}</button>
   <DropdownToggle

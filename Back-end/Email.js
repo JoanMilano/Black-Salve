@@ -5,11 +5,16 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv"); 
 
 const app = express(); 
-app.use(cors());
 app.use(express.json()); 
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 app.use("/", router); 
-app.listen(3000, () => console.log("Server Running")); 
-dotenv.config();
+dotenv.config({ path: '../.env' });
+const PORT = 3002 ;
+  app.listen(PORT, () => {
+    console.log(`Email server listening at http://localhost:${PORT}/`);
+  });
 
 
 const contactEmail = nodemailer.createTransport({
@@ -41,7 +46,7 @@ const contactEmail = nodemailer.createTransport({
 
     const mail = {
       from: name,
-      to: "", // clients email 
+      to: "joan.milano829@gmail.com", // clients email 
       subject: "Contact Form Submission - Black Salve",
       html: `<p>Name: ${name}</p>
              <p>Email: ${email}</p>
@@ -62,4 +67,3 @@ const contactEmail = nodemailer.createTransport({
       res.status(400).json({ code: 400, status: "Bad Request" }); 
         }
     });
- 

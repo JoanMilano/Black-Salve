@@ -13,9 +13,14 @@ const path = require('path')
 const fetch = require('node-fetch')
 const app = express();
 
-//Configure
-app.use(cors({
-    origin: 'http://localhost:3000'
+//Configure 
+const PORT = 3001 ;
+  app.listen(PORT, () => {
+    console.log(`Payment server listening at http://localhost:${PORT}/`);
+  });
+
+  app.use(cors({
+    origin: ['http://localhost:3000']
   }));
 // Configure PayPal SDK
 const PAYPAL_CLIENT_ID = process.env.CLIENT_ID;
@@ -77,11 +82,6 @@ const createOrder = async (cart) => {
   const subTotalPrice = Number(cart.subTotalPrice);
   const shippingPrice = cart.shippingPrice;
   const totalPrice = subTotalPrice + shippingPrice; 
-
-  console.log(
-    "shopping cart information passed from the frontend createOrder() callback:",
-    cart, "totalPrice:", totalPrice, "subTotalPrice:", subTotalPrice
-  );
 
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders`;
@@ -197,10 +197,4 @@ app.post("/api/orders/:orderID/capture", async (req, res) => {
 // serve index.html
 app.get("/", (req, res) => {
   res.sendFile(path.resolve("./public/index.html"));
-});
-
-const PORT = 3001 ;
-
-app.listen(PORT, () => {
-  console.log(`Node server listening at http://localhost:${PORT}/`);
 });
