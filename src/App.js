@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { Routes, Route} from 'react-router-dom'; 
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'; 
 import Home from './Pages/Home.js';
 import Info from './Pages/Info.js';
 import Contact from './Pages/Contact.js';
@@ -11,8 +11,9 @@ import Checkout from './Pages/Checkout.js';
 
 function App() {
   return (
+    <Router>
     <div className="App">
-      <NavBar />
+        <NavBar />
       <div className="content">
      <Routes>
         <Route path="/" exact element={<Home />} />
@@ -23,6 +24,7 @@ function App() {
       </div>
      <Footer />
     </div>
+    </Router>
   );
 }
 

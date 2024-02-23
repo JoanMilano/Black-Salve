@@ -81,6 +81,7 @@ const createOrder = async (cart) => {
   
   const subTotalPrice = Number(cart.subTotalPrice);
   const shippingPrice = cart.shippingPrice;
+  const shippingType = cart.shippingType;
   const totalPrice = subTotalPrice + shippingPrice; 
 
   const accessToken = await generateAccessToken();
@@ -112,7 +113,8 @@ const createOrder = async (cart) => {
                 currency_code: 'USD',
                 value: item.price
               },
-         }))
+         })),
+         shipping_preference: shippingType
       },
    ],
 };

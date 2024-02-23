@@ -140,6 +140,7 @@ const Checkout = () => {
           body: JSON.stringify({
             cart: {
               shippingPrice,
+              shippingType,
               subTotalPrice,
               selectedItems
             },
