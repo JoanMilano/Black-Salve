@@ -27,24 +27,24 @@ const onFormUpdate = (category, value) => {
     })
 }
 
-const handleSubmit = async (e) => { // asynchronous programming !!???
+const handleSubmit = async (e) => { 
     e.preventDefault(); // so page deosnt reload when form is submitted
     setButtonText("Sending...");
-    let response = await fetch("http://localhost:3002/contact", { // path to server 
-      method: "POST", // sends HTTP POST request to server at ^^
+    let response = await fetch("http://localhost:3002/contact", {  
+      method: "POST",
       headers: {
-        "Content-Type": "application/json;charset=utf-8", // translates to JSON
+        "Content-Type": "application/json;charset=utf-8", 
       },
-      body: JSON.stringify(formDetails), // body is more concise id for the form details. why we need to stringify???
+      body: JSON.stringify(formDetails),
     });
 
-setButtonText("Send"); // when done sending set button back send
+setButtonText("Send"); 
  let result = await response.json();
- console.log(response); // waiting for response in json formmat?? 
- setFormDetails(formInitialDetails); // clear form 
- if (result.code === 200) { // code from server when sent successfully 
+ console.log(response); 
+ setFormDetails(formInitialDetails); 
+ if (result.code === 200) { 
     setStatus({ success: true, message: 'Message sent successfully.'}); 
- } else { // didnt send back success
+ } else { 
     setStatus({ success: false, message: 'Something went wrong.' })
  }
 };  

@@ -10,7 +10,7 @@ app.use(cors({
   origin: 'http://localhost:3000'
 }));
 app.use("/", router); 
-dotenv.config({ path: '../.env' });
+dotenv.config();
 const PORT = 3002 ;
   app.listen(PORT, () => {
     console.log(`Email server listening at http://localhost:${PORT}/`);
