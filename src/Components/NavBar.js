@@ -25,7 +25,7 @@ export const NavBar = () => {
   <Navbar expand="lg" className={scrolled ? "nav scrolled" : "nav"}> 
     <Container>
       <Navbar.Brand href="#home">
-        <h2>Grandmas Healing Salve</h2>
+        <h2 className="logo">Grandmas Healing Salve</h2>
       </Navbar.Brand>
 
       <Navbar.Toggle aria-controls="basic-navbar-nav">

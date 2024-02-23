@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
-import twoOz from "../assets/imgs/open2oz.avif";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import fetch from "node-fetch";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import oneOz from "../assets/imgs/open1oz.avif";
+import twoOz from "../assets/imgs/open2oz.avif";
 import { Dropdown, DropdownDivider, DropdownItem, DropdownMenu, DropdownToggle } from "react-bootstrap";
-import { PayPalButton } from "react-paypal-button-v2";
 
 
 // 1.  order id is undefined
 const Checkout = () => {
   const [selectedItems, setSelectedItems] = useState([]);
+  const [message, setMessage] = useState("");
   const [firstButtonText, setFirstButtonText] = useState("0");
   const [secondButtonText, setSecondButtonText] = useState("0");
+  const [success, setSuccess] = useState(false);
   const [shippingPrice, setShippingPrice] = useState(0);
   const [shippingType, setShippingType] = useState("Select a Shipping Method");
   const [priceOfProductOnes, setPriceOfProductOnes] = useState(0);
@@ -30,6 +34,18 @@ const Checkout = () => {
     price: 0,
   };
 
+  const initialOptions = {
+    "client-id": "AVeXX3FDtEFSDdECuQIhy2r6hQ--wZkU9o77sFL-uUkCgX7jWlihrErOOyHFpFdyzxWuOwk6xmx7-gLx",
+    "enable-funding": "card",
+    "disable-funding": "paylater,venmo",
+    "data-sdk-integration-source": "integrationbuilder_sc",
+  };
+    // Renders errors or successfull transactions on the screen.
+    function Message({ content }) {
+      return <p className={success ? "alert alert-success" : ""}>{content}</p>;
+    }
+  
+  // define what has been selected and adds it to the selectedItems array (updates dropdown buttons)
   const handleOnClick = (product, quantity, price) => {
     let selectedProduct = { title: product, quantity, price }; 
 
@@ -65,6 +81,7 @@ const Checkout = () => {
   function calculateShipping(selectedItems) {
     const totalOrderQuantity = selectedItems.reduce((total, item) => {
       return total + item.quantity;
+
     }, 0);
 
 
@@ -83,9 +100,9 @@ const Checkout = () => {
     }
   }
 
+
   useEffect(() => {
     calculatePrices(selectedItems, shippingPrice, shippingType);
-
   function calculatePrices(selectedItems, shippingPrice, shippingType) {
     calculateShipping(selectedItems, shippingPrice, shippingType);
 
@@ -110,58 +127,99 @@ const Checkout = () => {
     setSubTotalPrice(subTotalPrice.toFixed(2));
     setTotalPrice(totalPrice.toFixed(2));
   }
-  // eslint-disable-next-line
+   // eslint-disable-next-line
 }, [selectedItems, shippingPrice, shippingType]); 
 
-
-const createOrder = ( actions ) => { 
-  const itemTotal = selectedItems.reduce((priceTotal, item) => {
-    return priceTotal += item.quantity * item.price; 
-  }, 0);
-  return actions.order.create({
-    application_context: {
-      locale: 'en-US'
-    },
-    purchase_units: [
-      {
-        amount: {
-          currency_code: 'USD',
-          value: totalPrice,
-          breakdown: {
-            item_total: {
-              currency_code: 'USD',
-              value: itemTotal
-             }, // set item_total to a number value
-             shipping: {
-              currency_code: 'USD',
-              value: shippingPrice
-            }
-            }
+    const createOrder = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/orders", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cart: {
+              shippingPrice,
+              subTotalPrice,
+              selectedItems
             },
-        items: selectedItems.map(item => ({
-            name: item.title,
-            description: item.description,
-            quantity: item.quantity,
-            category: 'PHYSICAL_GOODS',
-            unit_amount: {
-              currency_code: 'USD',
-              value: item.price
-            },
-          }))
-          
-      },
-    ],
-  });
-}; 
+          })
+        })
 
-const handleOnSuccess = (details) => {
-  const { payer } = details;
-  const customerName = payer.name.given_name;
-  const customerOrderID =  details.orderID;
-  alert(
-    `Transaction complete! Thank You for your purchase ${customerName}, your order ID is ${customerOrderID}`
-  );
-}
+        const orderData = await response.json();
+
+        if (orderData.id) {
+          return orderData.id;
+        } else {
+          const errorDetail = orderData?.details?.[0];
+          const errorMessage = errorDetail
+            ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
+            : JSON.stringify(orderData);
+
+          throw new Error(errorMessage);
+        }
+      } catch (error) {
+        console.error(error);
+        setMessage(`Could not initiate PayPal Checkout...${error}`);
+      }
+    }
+    const onApprove = async (data, actions) => {
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/orders/${data.orderID}/capture`, 
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const orderData = await response.json();
+        // Three cases to handle:
+        //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+        //   (2) Other non-recoverable errors -> Show a failure message
+        //   (3) Successful transaction -> Show confirmation or thank you message
+
+        const errorDetail = orderData?.details?.[0];
+
+        if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
+          // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+          // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
+          return actions.restart();
+        } else if (errorDetail) {
+          // (2) Other non-recoverable errors -> Show a failure message
+          throw new Error(
+            `${errorDetail.description} (${orderData.debug_id})`,
+          );
+        } else {
+          // (3) Successful transaction -> Show confirmation or thank you message
+          // Or go to another URL:  actions.redirect('thank_you.html');
+          const transaction = orderData.purchase_units[0].payments.captures[0];
+          if (transaction.status === "COMPLETED") {
+            setSuccess(true);
+          setMessage(
+            `Transaction successful, Thank you for your business! Your order ID is ${transaction.id}`
+          );} else {
+            setSuccess(false);
+            setMessage(
+              `Transaction un-successful. Please review order and card details and try again. Or contact us directly, thank you!`,
+            );
+          }
+          console.log(
+            "Capture result",
+            orderData,
+            JSON.stringify(orderData, null, 2),
+          );
+        }
+      } catch (error) {
+        console.error(error);
+        setMessage(
+          `Sorry, your transaction could not be processed...${error}`,
+        );
+      }
+    }
+
 
 
     return (
@@ -169,7 +227,7 @@ const handleOnSuccess = (details) => {
       <div className="checkout-title"><h2>Checkout</h2></div>
 
       <section className="salve-option-one">
-      <img src={twoOz} alt="1oz tin of Black Salve" />
+      <img src={oneOz} alt="1oz tin of Black Salve" />
       <Dropdown className="dropdown">
   <button variant="info" className="btn btn-color btn-text">{firstButtonText}</button>
   <DropdownToggle
@@ -234,7 +292,7 @@ const handleOnSuccess = (details) => {
     <DropdownItem onClick={() => handleOnClick(productTwo.title, 18, 21.99)}>18 --2oz-- 21.99$ ea.</DropdownItem>
     <DropdownItem onClick={() => handleOnClick(productTwo.title, 19, 21.99)}>19 --2oz-- 21.99$ ea.</DropdownItem>
     <DropdownItem onClick={() => handleOnClick(productTwo.title, 20, 21.99)}>20 --2oz-- 21.99$ ea.</DropdownItem>
-    <DropdownDivider></DropdownDivider> {/* up to 20 items*/}
+    <DropdownDivider></DropdownDivider> 
     <DropdownItem>Contact for WholeSale</DropdownItem> 
   </DropdownMenu>
 </Dropdown>
@@ -260,7 +318,7 @@ const handleOnSuccess = (details) => {
  <section className="details-section">
   <h3>Order Details</h3>
     <p>{selectedItems.find(item => item.title === productOne.title)?.quantity || 0} 1oz {priceOfProductOnes.toFixed(2)}$</p>
-     <p>{selectedItems.find(item => item.title === productTwo.title)?.quantity || 0} 2oz {priceOfProductTwos.toFixed(2)}$</p>  {/* conditionally render if theres a quantity > 0*/ }
+     <p>{selectedItems.find(item => item.title === productTwo.title)?.quantity || 0} 2oz {priceOfProductTwos.toFixed(2)}$</p> 
     <p>Subtotal: {subTotalPrice}$</p>
     <p>{shippingType}: {shippingPrice}$</p>
     <p>Total {totalPrice}$</p>
@@ -271,11 +329,15 @@ const handleOnSuccess = (details) => {
   {selectedItems.reduce((total, item) => total + item.quantity, 0) === 0 && (<p>Select a at least one item before proceeding to checkout!</p>)}
   {shippingType === "Select a Shipping Method" && (<p>Select a shipping option before proceeding to checkout!</p>)}
 {shippingType !== "Select a Shipping Method" && selectedItems.reduce((total, item) => total + item.quantity, 0) > 0 && (
-<PayPalButton
-        amount={totalPrice} 
-        createOrder={(actions, data) => createOrder(actions, data)} 
-        onSuccess={(details) => handleOnSuccess(details)}
-      />)}
+  <><PayPalScriptProvider options={initialOptions}>
+    <PayPalButtons
+        style={{ shape: "pill", layout: "vertical" }}
+        createOrder={createOrder}
+        onApprove={onApprove}
+    />
+  </PayPalScriptProvider>
+  <Message content={message} />
+  </>)}
  </section>
  </div>
   </div>
@@ -283,4 +345,3 @@ const handleOnSuccess = (details) => {
 };
 
 export default Checkout;  
-

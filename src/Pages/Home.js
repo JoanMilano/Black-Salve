@@ -5,6 +5,9 @@ import { NavLink } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import brandLogo from "../assets/imgs/BrandLogo.avif";
+import car1 from "../assets/imgs/car1.avif";
+import car2 from "../assets/imgs/car2.avif";
+import car3 from "../assets/imgs/car3.avif";
 
 
 const Home = () => {
@@ -16,13 +19,13 @@ const Home = () => {
       <section className="first-section">
       <Carousel className="salve-car" >
           <Carousel.Item>
-            <img src={lodgeImg} alt="First slide" className="d-block w-100" />
+            <img src={car1} alt="First slide" className="d-block w-100" />
           </Carousel.Item>
           <Carousel.Item>
-            <img src={twoOz} alt="Second slide" className="d-block w-100" />
+            <img src={car2} alt="Second slide" className="d-block w-100" />
           </Carousel.Item>
           <Carousel.Item>
-            <img src={twoOz} alt="Third slide" className="d-block w-100" />
+            <img src={car3} alt="Third slide" className="d-block w-100" />
           </Carousel.Item>
           <Carousel.Item>
             <img src={twoOz} alt="Fourth slide" className="d-block w-100" />

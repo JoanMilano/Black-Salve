@@ -30,7 +30,7 @@ const onFormUpdate = (category, value) => {
 const handleSubmit = async (e) => { // asynchronous programming !!???
     e.preventDefault(); // so page deosnt reload when form is submitted
     setButtonText("Sending...");
-    let response = await fetch("http://localhost:3000/contact", { // path to server 
+    let response = await fetch("http://localhost:3002/contact", { // path to server 
       method: "POST", // sends HTTP POST request to server at ^^
       headers: {
         "Content-Type": "application/json;charset=utf-8", // translates to JSON
