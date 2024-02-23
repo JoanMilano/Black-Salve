@@ -21,7 +21,7 @@ const contactEmail = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.GMAIL_USER, // clients email
-      pass: process.env.GMAIL_PASS // clients email token key
+      pass: process.env.GMAIL_PASS // clients email app password
     },
   });
 
