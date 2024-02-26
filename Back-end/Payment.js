@@ -25,7 +25,7 @@ const PORT = 3001 ;
 // Configure PayPal SDK
 const PAYPAL_CLIENT_ID = process.env.CLIENT_ID;
 const PAYPAL_CLIENT_SECRET = process.env.CLIENT_SECRET;
-const base = "https://api-m.sandbox.paypal.com"; // Remove sandbox before going live & from frontend capture URL!!
+const base = "https://api.paypal.com"; // Remove sandbox before going live & from frontend capture URL!!
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // Parse application/json
