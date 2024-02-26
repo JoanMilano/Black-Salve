@@ -35,7 +35,7 @@ const Checkout = () => {
   };
 
   const initialOptions = {
-    "client-id": "AVeXX3FDtEFSDdECuQIhy2r6hQ--wZkU9o77sFL-uUkCgX7jWlihrErOOyHFpFdyzxWuOwk6xmx7-gLx",
+    "client-id": "AWUAgKEPTPGDA0SaeZeSt7FHYBDkn9ac4u8J6d7MTyPKbghF5RpyoulRzUUdkHuVGPKvd8Q9r5leFKoE",
     "enable-funding": "card",
     "disable-funding": "paylater,venmo",
     "data-sdk-integration-source": "integrationbuilder_sc",
