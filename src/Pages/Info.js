@@ -33,6 +33,24 @@ const Info = () => {
         <li>Abscesses (external use)</li>
     </ul>
     </section>
+    <section className="testimonial-img-section">
+        <div className="test">
+        <img src={arm} alt="Arm Before And After"/>
+        <p>M. Quintana, Buena Park, CA: Just a little note to let you know that your Grandma's Healing Salve not only works, it works great!  I couldn't believe the results in just one day.  It took the pain and bump I had with the lesion caused by MRSA.  Hopefully I will not have anymore outbreaks it's such a ugly painful thing to have), but if I do - I will start your Grandma's Miracle Healing Salve right away!  I have now been putting the salve on my dog's skin infections (she has a lot of skin allergies possible staph, too) and it has improved.  About my MRSA, my doctor thinks more than likely I got infected from working in a pre-school/daycare.</p>
+        </div>
+        <div className="test">
+        <img src={foot} alt="Foot Before And After" />
+        <p>See the amazing change in these pictures of foot boils before and after using Grandma's Healing Salve. Before, walking was really hard because of the pain. But with the salve, the boils went down, the swelling went away, and she could walk better. Now her feet look much better and she can move around comfortably again.</p>
+      </div>
+      <div className="test">
+        <img src={horse} alt="Horse Before And After"/>
+        <p>This horse backed into a fence and rammed a 6 inch screw into his hind quarters. His vet packed it and treated it; but nothing worked.  Grandma's Healing Salve was then placed into the wound and packed and changed daily. His wound was healing in less than 2 weeks.</p>
+      </div>
+      <div className="test">
+        <img src={ear} alt="Ear Before And After" />
+        <p>C. Rogers, Pelzer, SC: (Pictures below) I bought a jar of salve and it was the fastest shipping I have even had lol It was lightening fast!!!!!!! Really impressed with the shipping!!!! I have enclosed a picture of the before, golf ball sized abscess underneath my right ear. I started using this salve on Friday, twice a day. Today is Monday and it has been oozing and the swelling has gone down considerably. It has started itching which I feel is a sign that it's healing! Can't wait to send the healed picture and the way it's going, it won't be that long.I love this stuff. It stinks but I love it. My parents used to buy it in a tube decades ago and is really hard to find, the safe kind, I mean!  So, thank you. So far, so good!!!!!  I'll keep in touch! It was literally less than a week, before it was almost gone. I could tell the difference the first day I used it, the next morning!</p>
+      </div> 
+    </section>
     <section>
         <ul className="testimonial-text-section">
           <li>Dr. Tracey Staley, DNMA  (Doctor of Natural Medicine and Acupuncture):  Egbert, ON Canada(Ebay username: cpobera):   I had laser treatment for rosacea on my face.  I wastold minimal bruising was possible.  When I was done, the left sideof my face looked like I placed my face on a hot grill, severe blackbruising.  4 days later showed no improvement.  I decided to usethe healing salve covered with gauze on my bruising.  By the thirdmorning, the black bruising was almost not visible.  Please let me knowwhere to send my before and after pictures. My next visit to the dermatologist,I will endorse your product, and show him the quick improvement.  Thankyou!</li>
@@ -54,24 +72,6 @@ const Info = () => {
           <li>A. Billups, Cameron Park, CA: I can't believe how the red lines in my foot were gone overnightand the wound healed completely by the end of the week.</li>
           <li>C. Beck, Pottsboro, TX (Ebay username: cynbutterfly): I finally got a chance to leave a feedback for you. I've used the salve acouple of times so far.  It seems to be doing a good job! I appreciateyou. After this batch is up, I'll get more. Have a good one.</li>
         </ul>
-    </section>
-    <section className="testimonial-img-section">
-        <div className="test">
-        <img src={arm} alt="Arm Before And After"/>
-        <p>M. Quintana, Buena Park, CA (Pictures to the right): Just a little note to let you know that your Grandma's Healing Salve not only works, it works great!  I couldn't believe the results in just one day.  It took the pain and bump I had with the lesion caused by MRSA.  Hopefully I will not have anymore outbreaks it's such a ugly painful thing to have), but if I do - I will start your Grandma's Miracle Healing Salve right away!  I have now been putting the salve on my dog's skin infections (she has a lot of skin allergies possible staph, too) and it has improved.  About my MRSA, my doctor thinks more than likely I got infected from working in a pre-school/daycare.</p>
-        </div>
-        <div className="test">
-        <img src={foot} alt="Foot Before And After" />
-        <p>See the amazing change in these pictures of foot boils before and after using Grandma's Healing Salve. Before, walking was really hard because of the pain. But with the salve, the boils went down, the swelling went away, and she could walk better. Now her feet look much better and she can move around comfortably again.</p>
-      </div>
-      <div className="test">
-        <img src={horse} alt="Horse Before And After"/>
-        <p>This horse backed into a fence and rammed a 6 inch screw into his hind quarters. His vet packed it and treated it; but nothing worked.  Grandma's Healing Salve was then placed into the wound and packed and changed daily. His wound was healing in less than 2 weeks.</p>
-      </div>
-      <div className="test">
-        <img src={ear} alt="Ear Before And After" />
-        <p>C. Rogers, Pelzer, SC: (Pictures below) I bought a jar of salve and it was the fastest shipping I have even had lol It was lightening fast!!!!!!! Really impressed with the shipping!!!! I have enclosed a picture of the before, golf ball sized abscess underneath my right ear. I started using this salve on Friday, twice a day. Today is Monday and it has been oozing and the swelling has gone down considerably. It has started itching which I feel is a sign that it's healing! Can't wait to send the healed picture and the way it's going, it won't be that long.I love this stuff. It stinks but I love it. My parents used to buy it in a tube decades ago and is really hard to find, the safe kind, I mean!  So, thank you. So far, so good!!!!!  I'll keep in touch! It was literally less than a week, before it was almost gone. I could tell the difference the first day I used it, the next morning!</p>
-      </div> 
     </section>
     <section className="disclaimer-section">
         <h1>Disclaimer</h1>

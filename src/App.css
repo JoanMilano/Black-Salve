@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
     transition:  0.32s ease-in-out;
 }
 .logo {
-    font-family: cursive; 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 30px;
 }
 .navbar-links {
@@ -78,7 +78,8 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
       align-items: center; 
       position: relative;
-    margin-left: 20rem;
+    margin-left: 250px;
+    margin-right: 10px;
     top: -70px;
 }
 .gmail-icon {
@@ -185,7 +186,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--background-color1);
 }
 .logo-img {
-    max-width: 510px; 
+    max-width: 100%; 
     height: auto; border-radius: 50%;
     border: 3px solid var(--accent-color1);
 }
@@ -205,6 +206,20 @@ h1, h2, h3, h4, h5, h6 {
         margin-left: 1250px;
     }
 }
+@media (max-width: 373px) {
+    .second-section img  {
+        margin-right: -45px;
+    }
+}
+@media (max-width: 430px) {
+    .salve-car   {
+        min-width: 310px;
+    }
+    .social-icon-nav {
+        margin-left: 150px;
+    }
+
+}
 
 /*********** Info *************/
 
@@ -223,22 +238,6 @@ h1, h2, h3, h4, h5, h6 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     border: 3px solid var(--accent-color1);
 }
-.testimonial-text-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0px;
-    width: 100%;
-    padding: 50px;
-    background-color: var(--background-color5);
-    font-size: 20px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    border: 3px solid var(--accent-color1);
-}
-.testimonial-text-section li {
-    max-width: 800px;
-    margin-bottom: 20px
-}
 .testimonial-img-section {
     padding: 50px;
     background-color: var(--background-color5);
@@ -256,12 +255,27 @@ h1, h2, h3, h4, h5, h6 {
 .testimonial-img-section p {
   max-width: 800px;
 }
-
 .test {
     margin-bottom: 180px;
 }
 .test p {
-    padding-top: 40px;
+    padding-top: 100px;
+}
+.testimonial-text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    padding: 50px;
+    background-color: var(--background-color5);
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 3px solid var(--accent-color1);
+}
+.testimonial-text-section li {
+    max-width: 800px;
+    margin-bottom: 20px
 }
 .disclaimer-section {
     display: flex; 
@@ -276,11 +290,18 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 700px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 750px) {
     .test img  {
         margin-left: 1250px;
     }
 }
+@media (max-width: 480px) {
+    .test img  {
+        margin-right: -50px;
+        width: 300px;
+    }
+}
+
 /*********** Contact *************/
 
 .contact-page {
@@ -474,7 +495,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .social-icon-footer {
- margin-left: 66%;
+ margin-left: 100px;
+ padding-right: 10px;
  margin-bottom: 20px;
  width: auto;
 }
