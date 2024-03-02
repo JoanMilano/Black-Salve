@@ -12,6 +12,7 @@
       "paypal-rest-sdk": "^1.8.1"
     },
     "scripts": {
+      "build": "npm i",
       "start": "npm-run-all -p start-servers",
       "start-servers": "node Email.js & node Payment.js",
       "start-email-server": "node Email.js",
