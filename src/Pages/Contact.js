@@ -30,7 +30,7 @@ const onFormUpdate = (category, value) => {
 const handleSubmit = async (e) => { 
     e.preventDefault(); // so page deosnt reload when form is submitted
     setButtonText("Sending...");
-    let response = await fetch("http://localhost:3002/contact", {  
+    let response = await fetch("https://black-salve.onrender.com/contact", {  
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8", 

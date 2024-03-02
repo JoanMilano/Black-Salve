@@ -132,7 +132,7 @@ const Checkout = () => {
 
     const createOrder = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/orders", {
+        const response = await fetch("https://black-salve.onrender.com/api/orders", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -167,7 +167,7 @@ const Checkout = () => {
     const onApprove = async (data, actions) => {
       try {
         const response = await fetch(
-          `http://localhost:3001/api/orders/${data.orderID}/capture`, 
+          `https://black-salve.onrender.com/api/orders/${data.orderID}/capture`, 
           {
             method: "POST",
             headers: {

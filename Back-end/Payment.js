@@ -14,13 +14,13 @@ const fetch = require('node-fetch')
 const app = express();
 
 //Configure 
-const PORT = 3001 ;
+const PORT = 10001 ;
   app.listen(PORT, () => {
     console.log(`Payment server listening at http://localhost:${PORT}/`);
   });
 
   app.use(cors({
-    origin: ['http://localhost:3000']
+    origin: ['https://grandmashealingsalve.com/']
   }));
 // Configure PayPal SDK
 const PAYPAL_CLIENT_ID = process.env.CLIENT_ID;

@@ -8,10 +8,10 @@ const app = express();
 dotenv.config();
 app.use(express.json()); 
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: 'https://grandmashealingsalve.com/'
 }));
 app.use("/", router); 
-const PORT = 3002 ;
+const PORT = 10000 ;
   app.listen(PORT, () => {
     console.log(`Email server listening at http://localhost:${PORT}/`);
   });
