@@ -327,7 +327,7 @@ const Checkout = () => {
  </div>
  <section className="paypal-section">
   <h1>Purchase here!</h1>
-  {selectedItems.reduce((total, item) => total + item.quantity, 0) === 0 && (<p>Select a at least one item before proceeding to checkout!</p>)}
+  {selectedItems.reduce((total, item) => total + item.quantity, 0) === 0 && (<p>Select at least one item before proceeding to checkout!</p>)}
   {shippingType === "Select a Shipping Method" && (<p>Select a shipping option before proceeding to checkout!</p>)}
 {shippingType !== "Select a Shipping Method" && selectedItems.reduce((total, item) => total + item.quantity, 0) > 0 && (
   <><PayPalScriptProvider options={initialOptions}>
