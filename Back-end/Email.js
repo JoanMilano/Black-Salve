@@ -7,15 +7,15 @@ const dotenv = require("dotenv");
 const app = express(); 
 dotenv.config();
 app.use(express.json()); 
-app.use(cors({
-  origin: 'https://grandmashealingsalve.com/'
-}));
+app.use(cors('https://grandmashealingsalve.com/'));
 app.use("/", router); 
 const PORT = 10000 ;
   app.listen(PORT, () => {
     console.log(`Email server listening at http://localhost:${PORT}/`);
   });
-
+  app.get('/', (req, res) => {
+    res.send('Email Server Back-end is Live');
+  });
 
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
