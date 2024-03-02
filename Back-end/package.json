@@ -13,10 +13,8 @@
     },
     "scripts": {
       "build": "npm i",
-      "start": "npm-run-all -p start-servers",
-      "start-servers": "node Email.js & node Payment.js",
-      "start-email-server": "node Email.js",
-      "start-payment-server": "node Payment.js",
+      "start": "npm-run-all -p start-server",
+      "start-server": " node Server.js",
       "test": "jest --config jest.config.js"
     },
     "devDependencies": {

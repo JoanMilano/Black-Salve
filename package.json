@@ -31,9 +31,7 @@
   "scripts": {
     "start": "npm-run-all -p start-react start-servers",
     "start-react": "react-scripts start",
-    "start-servers": "node Back-end/Email.js & node Back-end/Payment.js",
-    "start-email-server": "node Back-end/Email.js",
-    "start-payment-server": "node Back-end/Payment.js",
+    "start-server": " node Back-end/Server.js",
     "build": "react-scripts build",
     "test": "jest --config jest.config.js",
     "eject": "react-scripts eject"
