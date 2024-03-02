@@ -29,7 +29,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm-run-all -p start-react start-servers",
+    "start": "npm-run-all -p start-react start-server",
     "start-react": "react-scripts start",
     "start-server": " node Back-end/Server.js",
     "build": "react-scripts build",

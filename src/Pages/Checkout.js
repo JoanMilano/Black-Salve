@@ -230,13 +230,13 @@ const Checkout = () => {
       <section className="salve-option-one">
       <img src={oneOz} alt="1oz tin of Black Salve" />
       <Dropdown className="dropdown">
-  <button variant="info" className="btn btn-color btn-text">{firstButtonText}</button>
+  <button variant="info" className="btn btn-color btn-text">{firstButtonText} --1oz--</button>
   <DropdownToggle
    split 
    className="btn-color"
    id="dropdown-split-basic" />
   <DropdownMenu className="drop-menu">
-    <DropdownItem onClick={() => handleOnClick(productOne.title, 0, 0.00)} placeholder="0">None</DropdownItem>
+    <DropdownItem onClick={() => handleOnClick(productOne.title, 0, 0.00)} placeholder="1oz">None</DropdownItem>
     <DropdownItem onClick={() => handleOnClick(productOne.title, 1, 17.99)}>1 --1oz-- 17.99$ ea.</DropdownItem>
     <DropdownItem onClick={() => handleOnClick(productOne.title, 2, 16.99)}>2 --1oz-- 16.99$ ea.</DropdownItem>
     <DropdownItem onClick={() => handleOnClick(productOne.title, 3, 16.99)}>3 --1oz-- 16.99$ ea.</DropdownItem>
@@ -266,13 +266,13 @@ const Checkout = () => {
 <section className="salve-option-two">
 <img src={twoOz} alt="2oz tin of Black Salve" />
 <Dropdown className="dropdown">
-  <button variant="info" className="btn btn-color btn-text">{secondButtonText}</button>
+  <button variant="info" className="btn btn-color btn-text">{secondButtonText} --2oz--</button>
   <DropdownToggle
    split 
    className="btn-color"
    id="dropdown-split-basic" />
   <DropdownMenu className="drop-menu">
-  <DropdownItem onClick={() => handleOnClick(productTwo.title, 0, 0.00)} placeholder="0">None</DropdownItem>
+  <DropdownItem onClick={() => handleOnClick(productTwo.title, 0, 0.00)} placeholder="2oz">None</DropdownItem>
     <DropdownItem onClick={() => handleOnClick(productTwo.title, 1, 24.99)}>1 --2oz-- 24.99$ ea.</DropdownItem>
     <DropdownItem onClick={() => handleOnClick(productTwo.title, 2, 23.99)}>2 --2oz-- 23.99$ ea.</DropdownItem>
     <DropdownItem onClick={() => handleOnClick(productTwo.title, 3, 23.99)}>3 --2oz-- 23.99$ ea.</DropdownItem>
@@ -306,20 +306,20 @@ const Checkout = () => {
         <div>
       <input type="radio" id="option1" name="options" value="Standard" onClick={() => setShippingType('Standard') }/>
   <label htmlFor="option1">Standard Shipping</label>
-  <p>Free - 5 to 7 bussiness days</p>
+  <p>Free - 5 to 7 business days</p>
   </div>
   <div className="shipping-option-two">
   <input type="radio" id="option2" name="options" value="Priority" onClick={() => setShippingType('Priority') }/>
   <label htmlFor="option2">Priority Shipping</label>
-  <p>5$ or Free for orders over 5 items!</p>
-  <p>3 to 5 bussiness days</p>
+  <p className="deal">5$ or Free for orders over 5 items!</p>
+  <p>3 to 5 business days</p>
   </div>
       </form>
  </section>
  <section className="details-section">
   <h3>Order Details</h3>
-    <p>{selectedItems.find(item => item.title === productOne.title)?.quantity || 0} 1oz {priceOfProductOnes.toFixed(2)}$</p>
-     <p>{selectedItems.find(item => item.title === productTwo.title)?.quantity || 0} 2oz {priceOfProductTwos.toFixed(2)}$</p> 
+    <p>{selectedItems.find(item => item.title === productOne.title)?.quantity || 0} --1oz-- {priceOfProductOnes.toFixed(2)}$</p>
+     <p>{selectedItems.find(item => item.title === productTwo.title)?.quantity || 0} --2oz-- {priceOfProductTwos.toFixed(2)}$</p> 
     <p>Subtotal: {subTotalPrice}$</p>
     <p>{shippingType}: {shippingPrice}$</p>
     <p>Total {totalPrice}$</p>

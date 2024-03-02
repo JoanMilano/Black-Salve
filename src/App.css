@@ -447,6 +447,10 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px; 
     background-color: var(--background-color3);
 }
+.deal {
+    text-decoration: underline;
+    text-decoration-color: green;
+}
 .paypal-section {
     grid-area: paypal;
     padding: 25px;
