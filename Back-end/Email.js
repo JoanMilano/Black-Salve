@@ -5,12 +5,12 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv"); 
 
 const app = express(); 
+dotenv.config();
 app.use(express.json()); 
 app.use(cors({
   origin: 'http://localhost:3000'
 }));
 app.use("/", router); 
-dotenv.config();
 const PORT = 3002 ;
   app.listen(PORT, () => {
     console.log(`Email server listening at http://localhost:${PORT}/`);
