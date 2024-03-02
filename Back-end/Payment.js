@@ -15,7 +15,7 @@ const app = express();
 
 //Configure 
 app.use(cors('https://grandmashealingsalve.com/'));
-const PORT = 10001 ;
+const PORT = 10000 ;
   app.listen(PORT, () => {
     console.log(`Payment server listening at http://localhost:${PORT}/`);
   });
