@@ -211,11 +211,7 @@ const nodemailer = require('nodemailer');
 const dotenv = require("dotenv"); 
 
 dotenv.config();
-app.use(express.json()); 
 app.use("/", router); 
-  app.listen(PORT, () => {
-    console.log(`Email server listening at http://localhost:${PORT}/`);
-  });
   app.get('/', (req, res) => {
     res.send('Email Server Back-end is Live');
   });
