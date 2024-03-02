@@ -317,15 +317,15 @@ const Checkout = () => {
   <div className="shipping-option-two">
   <input type="radio" id="option2" name="options" value="Priority" onClick={() => setShippingType('Priority') }/>
   <label htmlFor="option2">Priority Shipping</label>
-  <p className="deal">5$ or Free for orders over 5 items!</p>
+  <p className="deal">$5 or Free for orders over 5 items!</p>
   <p>3 to 5 business days</p>
   </div>
       </form>
  </section>
  <section className="details-section">
   <h3>Order Details</h3>
-    <p>{selectedItems.find(item => item.title === productOne.title)?.quantity || 0} --1oz-- {priceOfProductOnes.toFixed(2)}$</p>
-     <p>{selectedItems.find(item => item.title === productTwo.title)?.quantity || 0} --2oz-- {priceOfProductTwos.toFixed(2)}$</p> 
+    <p>{selectedItems.find(item => item.title === productOne.title)?.quantity || 0} --1oz-- ${priceOfProductOnes.toFixed(2)}</p>
+     <p>{selectedItems.find(item => item.title === productTwo.title)?.quantity || 0} --2oz-- ${priceOfProductTwos.toFixed(2)}</p> 
     <p>Subtotal: ${subTotalPrice}</p>
     <p>{shippingType}: ${shippingPrice}</p>
     <p>Total ${totalPrice}</p>
