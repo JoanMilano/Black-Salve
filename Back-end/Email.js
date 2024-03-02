@@ -57,6 +57,8 @@ const contactEmail = nodemailer.createTransport({
     contactEmail.sendMail(mail, (error) => {
         if (error) {
           console.log("Error sending email", error); 
+          console.log(process.env.GMAIL_USER);
+          console.log(process.env.GMAIL_PASS);
           res.status(500).json({ code: 500, status: "Error sending email" }); 
         } else {
           res.status(200).json({ code: 200, status: "Message Sent" });
